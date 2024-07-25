@@ -1,5 +1,6 @@
 package com.eletrosapplication;
 
+import com.eletrosapplication.domain.Eletro;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -10,4 +11,5 @@ public class EletrosApplication {
         SpringApplication.run(EletrosApplication.class, args);
     }
 
+    Eletro e = new Eletro();
 }

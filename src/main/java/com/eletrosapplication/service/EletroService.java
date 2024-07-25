@@ -17,11 +17,11 @@ public class EletroService {
         this.repository = repository;
     }
 
-    public Optional<Eletro> findById(Long id) {
+    public Optional<Eletro> findById(String id) {
         return repository.findById(id);
     }
 
-    public void delete(Long id) {
+    public void delete(String id) {
         Optional<Eletro> eletro = repository.findById(id);
         eletro.ifPresent(e -> {
             e.setIsDeleted(LocalDate.now());

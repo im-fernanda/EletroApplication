@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Index</title>
+
+    <style>
+        th, td {
+            border: 1px solid;
+        }
+    </style>
+</head>
+<body>
+<table style="border: 1px solid">
+    <thead>
+    <tr>
+        <th>Nome</th>
+        <th>Preco</th>
+        <th>Marca</th>
+        <th>Categoria</th>
+        <th>Descricao</th>
+        <th>Modelo</th>
+        <th>Editar</th>
+        <th>Deletar</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="eletro : ${eletros}">
+        <td th:text="${eletro.nome}">Nome</td>
+        <td th:text="${eletro.preco}">Preco</td>
+        <td th:text="${eletro.marca}">Marca</td>
+        <td th:text="${eletro.categoria}">Categoria</td>
+        <td th:text="${eletro.descricao}">Descricao</td>
+        <td th:text="${eletro.modelo}">Modelo</td>
+        <td><a th:href="@{/editPage/{id}(id=${eletro.id})}">Editar</a></td>
+        <td><a th:href="@{/processDelete/{id}(id=${eletro.id})}">Deletar</a></td>
+    </tr>
+    </tbody>
+</table>
+<form th:action="@{/cadastroPage}">
+    <button type="submit">Cadastrar Produto</button>
+</form>
+</body>
+</html>

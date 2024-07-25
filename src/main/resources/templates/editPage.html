@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form th:object="${eletro}" method="post" th:action="@{/processEditPage}">
+    <input type="hidden" th:field="*{id}" />
+    Nome<input type="text" th:field="*{nome}" />
+    Preco<input type="number" th:field="*{preco}" /><br />
+    Marca<input type="text" th:field="*{marca}" /><br />
+    Categoria<input type="text" th:field="*{categoria}" /><br />
+    Descricao<input type="text" th:field="*{descricao}" /><br />
+    Modelo<input type="text" th:field="*{modelo}" /><br />
+    <button type="submit">Modificar</button>
+</form>
+</body>
+</html>
