@@ -12,6 +12,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.Objects;
@@ -89,11 +90,11 @@ public class EletroController {
             System.out.println("Cadastrou");
         }
 
-        ModelAndView modelAndView = new ModelAndView("index");
+        ModelAndView modelAndView = new ModelAndView("redirect:/admin");
         modelAndView.addObject("msg", "Cadastro realizado com sucesso");
         modelAndView.addObject("eletros", service.findAll());
-
         return modelAndView;
+        //return "redirect:/admin?msg=Cadastro realizado com sucesso";
     }
 
     @GetMapping("/editPage/{id}")
@@ -113,23 +114,20 @@ public class EletroController {
         return modelAndView;
     }
 
-    /*@PostMapping("/processEditPage")
-    public String processEditPage(@ModelAttribute @Valid Eletro eletro) {
-        // Pega o id do eletro que foi passado por parâmetro na URL
-        Optional<Eletro> eletro_b = service.findById(eletro.getId());
-
-        // Modifica com as novas informações pegas do HTML caso o eletro exista
-        if (eletro_b.isPresent()) {
-            service.update(eletro);
-        }
-        return "redirect:/index";
-    }*/
 
     @GetMapping("/processDelete/{id}")
     public String processDelete(@PathVariable String id) {
         // "Remove" o eletro do id passado pela URL, trocando seu atributo isDeleted
         service.delete(id);
 
-        return "redirect:/admin";
+        return "redirect:/admin?msg=Remoção realizada com sucesso";
+    }
+
+    @PostMapping("/logout")
+    public String logout(HttpSession session) {
+        // Invalidar a sessão
+        session.invalidate();
+        // Redirecionar para a página inicial
+        return "redirect:/index";
     }
 }

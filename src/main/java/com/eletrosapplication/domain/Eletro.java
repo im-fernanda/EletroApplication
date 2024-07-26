@@ -36,7 +36,7 @@ public class Eletro {
     String modelo;
 
     String descricao;
-    @NotBlank(message = "Imagem é obrigatória")
+   // @NotBlank(message = "Imagem é obrigatória")
     String imageUrl;
 
     LocalDate isDeleted;

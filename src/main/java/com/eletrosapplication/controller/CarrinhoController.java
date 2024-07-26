@@ -38,7 +38,6 @@ public class CarrinhoController {
             }
 
             carrinho.add(eletro.get());
-
             session.setAttribute("carrinho", carrinho);
         }
 
@@ -48,6 +47,7 @@ public class CarrinhoController {
     @GetMapping("/verCarrinho")
     public String verCarrinho(HttpSession session, Model model, HttpServletResponse response) {
         List<Eletro> carrinho = (List<Eletro>) session.getAttribute("carrinho");
+
         if(carrinho == null || carrinho.isEmpty()) {
             model.addAttribute("msg", "O carrinho está vazio");
             return "redirect:/admin";
@@ -60,7 +60,7 @@ public class CarrinhoController {
         cookie_visita.setMaxAge(24 * 60 * 60); // cookie de 24 horas
         response.addCookie(cookie_visita);
 
-        return "carrinho";
+        return "verCarrinho";
     }
 
     @GetMapping("/removerCarrinho/{id}")
@@ -87,7 +87,7 @@ public class CarrinhoController {
 
     @GetMapping("/finalizarCompra")
     public String finalizarCompra(HttpSession session) {
-            session.setAttribute("carrinho", new ArrayList<>());
+        session.setAttribute("carrinho", new ArrayList<>());
 
         return "redirect:/admin";
     }

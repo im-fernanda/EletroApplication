@@ -28,12 +28,17 @@
 
 <div th:replace="fragments/commons::header"></div>
 
+<!-- Exibe a mensagem se existir -->
+<p th:if="${msg}" class="message" th:text="${msg}"></p>
+
 <!-- Inclua o fragmento da tabela -->
 <div th:replace="fragments/commons::tabelaEletro(${eletros})"></div>
 
 <form th:action="@{/cadastroPage}">
     <button type="submit">Cadastrar Produto</button>
 </form>
+
+
 
 <footer th:fragment="footer">
     <h6>Rodapé do site</h6>

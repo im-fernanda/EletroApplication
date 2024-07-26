@@ -4,7 +4,18 @@
 
 
 <header th:fragment="header">
-    <h1>EletroTADS</h1>
+    <nav>
+        <ul>
+            <li><a href="/index">Home</a></li>
+            <li><a href="/verCarrinho">Ver Carrinho</a></li>
+            <!-- Adicione outros links de navegação aqui -->
+        </ul>
+
+        <form action="/logout" method="post">
+            <button type="submit">Logout</button>
+        </form>
+    </nav>
+
 </header>
 
 <footer th:fragment="footer">
@@ -23,9 +34,11 @@
             <th>Categoria</th>
             <th>Descrição</th>
             <th>Modelo</th>
-            <th>Foto</th>
+            <th>Imagem</th>
             <th>Editar</th>
             <th>Deletar</th>
+            <th>Add carrinho</th>
+
         </tr>
         </thead>
         <tbody>
@@ -36,9 +49,10 @@
             <td th:text="${eletro.categoria}"></td>
             <td th:text="${eletro.descricao}"></td>
             <td th:text="${eletro.modelo}"></td>
-            <td><img width="100px" th:src="@{'../img/' + ${eletro.imageUrl}}" alt="imagem"/></td>
+            <td><img th:src="@{'/img/' + ${eletro.imageUrl}}" alt="Imagem do Eletro"/></td>
             <td><a th:href="@{'/editPage/' + ${eletro.id}}">Editar</a></td>
             <td><a th:href="@{'/processDelete/' + ${eletro.id}}">Deletar</a></td>
+            <td><a th:href="@{/adicionarCarrinho/{id}(id=${eletro.id})}">Add ao Carrinho</a></td>
         </tr>
         </tbody>
     </table>

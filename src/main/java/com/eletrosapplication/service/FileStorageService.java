@@ -31,7 +31,7 @@ public class FileStorageService {
     public void save(MultipartFile file, String uniqueFilename) {
         try {
             Path targetLocation = this.root.resolve(uniqueFilename);
-            Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
+            Files.copy(file.getInputStream(), targetLocation);
             //Files.copy(file.getInputStream(), this.root.resolve(file.getOriginalFilename()));
         } catch (Exception e) {
             throw new RuntimeException("Could not store the file. Error: " + e.getMessage());

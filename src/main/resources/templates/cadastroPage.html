@@ -41,7 +41,6 @@
 
     <label for="image">Imagem</label>
     <input type="file" name="file" id="image"/>
-   <span th:if="${#fields.hasErrors('imageUrl')}" th:errors="*{imageUrl}" style="color: red"></span>
     <br />
 
     <button type="submit">Cadastrar</button>
