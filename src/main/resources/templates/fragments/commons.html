@@ -36,7 +36,7 @@
             <td th:text="${eletro.categoria}"></td>
             <td th:text="${eletro.descricao}"></td>
             <td th:text="${eletro.modelo}"></td>
-            <td><img width="100px" th:src="@{'/images/' + ${eletro.imageUrl}}" alt="imagem"/></td>
+            <td><img width="100px" th:src="@{'/img/' + ${eletro.imageUrl}}" alt="imagem"/></td>
             <td><a th:href="@{'/editPage/' + ${eletro.id}}">Editar</a></td>
             <td><a th:href="@{'/processDelete/' + ${eletro.id}}">Deletar</a></td>
         </tr>
