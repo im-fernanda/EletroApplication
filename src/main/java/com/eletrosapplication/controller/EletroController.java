@@ -3,29 +3,20 @@ package com.eletrosapplication.controller;
 import com.eletrosapplication.domain.Eletro;
 import com.eletrosapplication.service.EletroService;
 import com.eletrosapplication.service.FileStorageService;
-import jakarta.servlet.http.Cookie;
-<<<<<<< HEAD
-import jakarta.servlet.http.HttpServletResponse;
-=======
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
->>>>>>> luan
 import jakarta.validation.Valid;
-import org.springframework.http.CacheControl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 
-import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.concurrent.TimeUnit;
+import java.util.UUID;
 
 @Controller
 public class EletroController {
@@ -38,77 +29,64 @@ public class EletroController {
         this.fileStorageService = fileStorageService;
     }
 
-
     @GetMapping("/admin")
-<<<<<<< HEAD
-    public String listAll(Model model, HttpServletResponse response) {
-=======
-    public String listAll(Model model, HttpServletResponse response, HttpSession session) {
->>>>>>> luan
+    public String listAll(Model model, HttpSession session) {
         // Pegando a lista de itens cadastrados, que não estão deletados
         List<Eletro> eletros = service.findAll();
 
-        // Adicionando a lista a um model para passar pata o html
+        // Adicionando a lista a um model para passar para o HTML
         model.addAttribute("eletros", eletros);
 
-<<<<<<< HEAD
-        // Criando o cookie de visita
-        Cookie cookie_visita  = new Cookie("visita", "true");
-        cookie_visita.setMaxAge(24 * 60 * 60); // cookie de 24 horas
-        response.addCookie(cookie_visita);
-=======
         List<Eletro> carrinho = (List<Eletro>) session.getAttribute("carrinho");
-
         int quantidade = (carrinho != null) ? carrinho.size() : 0;
 
         System.out.println("Quantidade de itens no carrinho: " + quantidade);
         model.addAttribute("quantidade", quantidade);
->>>>>>> luan
 
         return "index";
     }
 
     @GetMapping("/cadastroPage")
-    public String getCadastroPage(Model model){
-        // criando um objeto Eletro e usando o model para enviar para o html
+    public String getCadastroPage(Model model) {
+        // Criando um objeto Eletro e usando o model para enviar para o HTML
         Eletro eletro = new Eletro();
         model.addAttribute("eletro", eletro);
         return "cadastroPage";
     }
 
     @PostMapping("/processSave/{editar_ou_cadastrar}")
-    public ModelAndView processSave(@ModelAttribute @Valid Eletro eletro, @RequestParam("file") MultipartFile file, BindingResult result, @PathVariable String editar_ou_cadastrar){
-        if(Objects.equals(editar_ou_cadastrar, "edit")){
-            // pega o id do eletro que foi passado por parametro na url
+    public ModelAndView processSave(
+            @ModelAttribute @Valid Eletro eletro, BindingResult result,
+            @RequestParam("file") MultipartFile file, Errors errors,
+            @PathVariable String editar_ou_cadastrar) {
+
+        // Verifica se há erros após o upload do arquivo
+        if (result.hasErrors()) {
+            System.out.println("Erros de validação: " + result.getAllErrors());
+            return new ModelAndView("cadastroPage").addObject("eletro", eletro);
+        }
+
+        if (Objects.equals(editar_ou_cadastrar, "edit")) {
+            // Pega o id do eletro que foi passado por parâmetro na URL
             Optional<Eletro> eletro_b = service.findById(eletro.getId());
 
-            // modifica com as novas informações pegas do html caso o eletro existir
-            if(eletro_b.isPresent()) {
-<<<<<<< HEAD
-=======
-                eletro.setImageUrl(file.getOriginalFilename());
-                fileStorageService.save(file);
-
->>>>>>> luan
+            // Modifica com as novas informações pegas do HTML caso o eletro exista
+            if (eletro_b.isPresent()) {
                 service.update(eletro);
-                System.out.println("editou");
+                System.out.println("Editou");
             }
         }
 
-        if(Objects.equals(editar_ou_cadastrar, "cad")){
-            if (result.hasErrors()) {
-                ModelAndView mav = new ModelAndView("cadastroPage");
-                mav.addObject("eletro", eletro);
-                return mav;
-            }
-            //Salvando a imagem
-            eletro.setImageUrl(file.getOriginalFilename());
-            fileStorageService.save(file);
+        if (Objects.equals(editar_ou_cadastrar, "cad")) {
+            // Gerar um UUID para o nome da imagem
+            String uniqueFilename = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
+            // Salvando a imagem com um nome único
+            eletro.setImageUrl(uniqueFilename);
+            fileStorageService.save(file, uniqueFilename);
 
-            // salva o objeto no banco de dados com as informações pegas do html
+            // Salva o objeto no banco de dados com as informações pegas do HTML
             service.create(eletro);
-
-            System.out.println("cadastrou");
+            System.out.println("Cadastrou");
         }
 
         ModelAndView modelAndView = new ModelAndView("index");
@@ -118,18 +96,17 @@ public class EletroController {
         return modelAndView;
     }
 
-
     @GetMapping("/editPage/{id}")
     public ModelAndView editPage(@PathVariable String id) {
-        // procura o eletro para ser editado
+        // Procura o eletro para ser editado
         Optional<Eletro> eletro = service.findById(id);
 
-        // se o eletro não existir redireciona de volta para o index
-        if(!eletro.isPresent()){
+        // Se o eletro não existir, redireciona de volta para o index
+        if (!eletro.isPresent()) {
             return new ModelAndView("redirect:/admin");
         }
 
-        // redireciona para a página de editar levando o eletro escolhido
+        // Redireciona para a página de editar levando o eletro escolhido
         ModelAndView modelAndView = new ModelAndView("editPage");
         modelAndView.addObject("eletro", eletro.get());
 
@@ -137,21 +114,20 @@ public class EletroController {
     }
 
     /*@PostMapping("/processEditPage")
-    public String processEditPage(@ModelAttribute @Valid Eletro eletro){
-
-        // pega o id do eletro que foi passado por parametro na url
+    public String processEditPage(@ModelAttribute @Valid Eletro eletro) {
+        // Pega o id do eletro que foi passado por parâmetro na URL
         Optional<Eletro> eletro_b = service.findById(eletro.getId());
 
-        // modifica com as novas informações pegas do html caso o eletro existir
-        if(eletro_b.isPresent()){
+        // Modifica com as novas informações pegas do HTML caso o eletro exista
+        if (eletro_b.isPresent()) {
             service.update(eletro);
         }
         return "redirect:/index";
     }*/
 
     @GetMapping("/processDelete/{id}")
-    public String processDelete(@PathVariable String id){
-        // "remove" o eletro do id passado pela url, trocando seu atributo isDeleted
+    public String processDelete(@PathVariable String id) {
+        // "Remove" o eletro do id passado pela URL, trocando seu atributo isDeleted
         service.delete(id);
 
         return "redirect:/admin";

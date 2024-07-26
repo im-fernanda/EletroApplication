@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
@@ -11,8 +10,6 @@
 
 <h1>Cadastro de Eletrodomésticos</h1>
 <form th:object="${eletro}" method="post" th:action="@{/processSave/{editar_ou_cadastrar}(editar_ou_cadastrar=${'cad'})}" enctype="multipart/form-data">
-    <input type="hidden" th:field="*{id}" />
-
     <label for="nome">Nome</label>
     <input type="text" th:field="*{nome}" id="nome"/>
     <span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" style="color: red"></span>
@@ -44,12 +41,11 @@
 
     <label for="image">Imagem</label>
     <input type="file" name="file" id="image"/>
-    <!-- <span th:if="${#fields.hasErrors('imageUrl')}" th:errors="*{imageUrl}" style="color: red"></span> -->
+   <span th:if="${#fields.hasErrors('imageUrl')}" th:errors="*{imageUrl}" style="color: red"></span>
     <br />
 
-    <button type="submit">Salvar</type></button>
+    <button type="submit">Cadastrar</button>
 </form>
-
 
 
 <!-- Inclui o footer -->

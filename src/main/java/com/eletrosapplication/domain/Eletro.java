@@ -1,6 +1,7 @@
 package com.eletrosapplication.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import jakarta.validation.constraints.NotNull;
@@ -13,7 +14,6 @@ import java.time.LocalDate;
 @Entity(name = "eletro_tbl")
 @Data
 public class Eletro {
-
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
@@ -23,6 +23,7 @@ public class Eletro {
     String nome;
 
     @NotNull(message = "Preço é obrigatório")
+    @DecimalMin(value = "0.01", inclusive = true, message = "Preço deve ser maior que zero")
     Double preco;
 
     @NotBlank(message = "Marca é obrigatória")
@@ -35,6 +36,8 @@ public class Eletro {
     String modelo;
 
     String descricao;
+    @NotBlank(message = "Imagem é obrigatória")
     String imageUrl;
+
     LocalDate isDeleted;
 }
