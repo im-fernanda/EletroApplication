@@ -6,18 +6,20 @@ import com.eletrosapplication.service.FileStorageService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
+import org.springframework.http.CacheControl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 
+import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 @Controller
 public class EletroController {
@@ -29,6 +31,7 @@ public class EletroController {
         this.service = service;
         this.fileStorageService = fileStorageService;
     }
+
 
     @GetMapping("/admin")
     public String listAll(Model model, HttpServletResponse response) {
@@ -55,7 +58,7 @@ public class EletroController {
     }
 
     @PostMapping("/processSave/{editar_ou_cadastrar}")
-    public ModelAndView processSave(@ModelAttribute @Valid Eletro eletro, BindingResult result, @PathVariable String editar_ou_cadastrar){
+    public ModelAndView processSave(@ModelAttribute @Valid Eletro eletro, @RequestParam("file") MultipartFile file, BindingResult result, @PathVariable String editar_ou_cadastrar){
         if(Objects.equals(editar_ou_cadastrar, "edit")){
             // pega o id do eletro que foi passado por parametro na url
             Optional<Eletro> eletro_b = service.findById(eletro.getId());
@@ -73,28 +76,23 @@ public class EletroController {
                 mav.addObject("eletro", eletro);
                 return mav;
             }
+            //Salvando a imagem
+            eletro.setImageUrl(file.getOriginalFilename());
+            fileStorageService.save(file);
+
             // salva o objeto no banco de dados com as informações pegas do html
             service.create(eletro);
+
             System.out.println("cadastrou");
         }
 
         ModelAndView modelAndView = new ModelAndView("index");
+        modelAndView.addObject("msg", "Cadastro realizado com sucesso");
         modelAndView.addObject("eletros", service.findAll());
 
         return modelAndView;
     }
 
-    /* @PostMapping("/processCadastroPage")
-    public ModelAndView processCadastroPage(@ModelAttribute @Valid Eletro eletro){
-        // salva o objeto no banco de dados com as informações pegas do html
-        service.create(eletro);
-
-        // levando a nova lista de eletros atualizada para o html como o modelAndView
-        ModelAndView modelAndView = new ModelAndView("index");
-        modelAndView.addObject("eletros", service.findAll());
-
-        return modelAndView;
-    } */
 
     @GetMapping("/editPage/{id}")
     public ModelAndView editPage(@PathVariable String id) {

@@ -14,20 +14,14 @@ import java.util.stream.Stream;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 
-/*
-Adaptado de https://www.bezkoder.com/spring-boot-file-upload/
- */
-
 @Service
-public class FileStorageService{
+public class FileStorageService {
 
-    private final Path root = Paths.get("src/main/webapp/WEB-INF/images");
-    //private final Path root = Paths.get("images");
-
+    private final Path root = Paths.get("src/main/resources/img");
 
     public void init() {
         try {
-            Files.createDirectory(root);
+            Files.createDirectories(root); // Cria diretórios intermediários
         } catch (IOException e) {
             throw new RuntimeException("Could not initialize folder for upload!");
         }

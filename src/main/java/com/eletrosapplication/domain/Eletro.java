@@ -20,21 +20,21 @@ public class Eletro {
 
     @Size(min = 2, message = "Houve um erro no cadastro do campo título.")
     @NotBlank (message = "Nome é obrigatório")
-    private String nome;
+    String nome;
 
     @NotNull(message = "Preço é obrigatório")
-    private Double preco;
+    Double preco;
 
     @NotBlank(message = "Marca é obrigatória")
-    private String marca;
+    String marca;
 
     @NotBlank(message = "Categoria é obrigatória")
-    private String categoria;
+    String categoria;
 
     @NotBlank(message = "Modelo é obrigatório")
-    private String modelo;
+    String modelo;
 
-    private String descricao;
-    private String imageUrl;
-    private LocalDate isDeleted;
+    String descricao;
+    String imageUrl;
+    LocalDate isDeleted;
 }

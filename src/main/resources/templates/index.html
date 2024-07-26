@@ -1,53 +1,47 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Index</title>
-
-    <!-- Inclui o header -->
-    <div th:include="fragments/commons :: header"></div>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EletroTADS</title>
+    <!-- Adicione seus estilos CSS aqui -->
     <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
         th, td {
-            border: 1px solid;
+            padding: 8px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        img {
+            max-width: 100px;
+            height: auto;
         }
     </style>
 </head>
 <body>
+<header th:fragment="header">
+    <h1>EletroTADS</h1>
+</header>
 
-<table style="border: 1px solid">
-    <thead>
-    <tr>
-        <th>Nome</th>
-        <th>Preco</th>
-        <th>Marca</th>
-        <th>Categoria</th>
-        <th>Descricao</th>
-        <th>Modelo</th>
-        <th>Editar</th>
-        <th>Deletar</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="eletro : ${eletros}">
-        <td th:text="${eletro.nome}">Nome</td>
-        <td th:text="${eletro.preco}">Preco</td>
-        <td th:text="${eletro.marca}">Marca</td>
-        <td th:text="${eletro.categoria}">Categoria</td>
-        <td th:text="${eletro.descricao}">Descricao</td>
-        <td th:text="${eletro.modelo}">Modelo</td>
-        <td><a th:href="@{/editPage/{id}(id=${eletro.id})}">Editar</a></td>
-        <td><a th:href="@{/processDelete/{id}(id=${eletro.id})}">Deletar</a></td>
-    </tr>
-    </tbody>
-</table>
-<a></a>
+
+<!-- Inclua o fragmento da tabela -->
+<div th:replace="fragments/commons::tabelaEletro(${eletros})"></div>
+
 <form th:action="@{/cadastroPage}">
     <button type="submit">Cadastrar Produto</button>
 </form>
 
+<footer th:fragment="footer">
+    <h6>Rodapé do site</h6>
+</footer>
 
-
-<!-- Inclui o footer -->
-<div th:include="fragments/commons :: footer"></div>
 </body>
 </html>
+
+
