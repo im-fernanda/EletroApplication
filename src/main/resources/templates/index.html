@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EletroTADS</title>
+    <!-- Adicione seus estilos CSS aqui -->
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        img {
+            max-width: 100px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+
+<div th:replace="fragments/commons::header"></div>
+
+<!-- Inclua o fragmento da tabela -->
+<div th:replace="fragments/commons::tabelaEletro(${eletros})"></div>
+
+<form th:action="@{/cadastroPage}">
+    <button type="submit">Cadastrar Produto</button>
+</form>
+
+<footer th:fragment="footer">
+    <h6>Rodapé do site</h6>
+</footer>
+
+</body>
+</html>
+
+

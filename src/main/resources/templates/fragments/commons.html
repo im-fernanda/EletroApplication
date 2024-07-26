@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+
+<header th:fragment="header">
+    <h1>EletroTADS</h1>
+    <h3><a th:href="@{'/verCarrinho'}">Carrinho: </a><span th:text="${quantidade}">0</span></h3>
+</header>
+
+<footer th:fragment="footer">
+    <h6>Rodapé do site</h6>
+</footer>
+
+
+<!-- Display da tabela dos produtos -->
+<div th:fragment="tabelaEletro(eletros)" class="container">
+    <table style="border: 2px solid black;">
+        <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Preço</th>
+            <th>Marca</th>
+            <th>Categoria</th>
+            <th>Descrição</th>
+            <th>Modelo</th>
+            <th>Foto</th>
+            <th>Carrinho</th>
+            <th>Editar</th>
+            <th>Deletar</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="eletro : ${eletros}">
+            <td th:text="${eletro.nome}"></td>
+            <td th:text="${eletro.preco}"></td>
+            <td th:text="${eletro.marca}"></td>
+            <td th:text="${eletro.categoria}"></td>
+            <td th:text="${eletro.descricao}"></td>
+            <td th:text="${eletro.modelo}"></td>
+            <td><img width="100px" th:src="@{'/img/' + ${eletro.imageUrl}}" alt="imagem"/></td>
+            <td><a th:href="@{'/adicionarCarrinho/' + ${eletro.id}}">Adicionar ao carrinho</a></td>
+            <td><a th:href="@{'/editPage/' + ${eletro.id}}">Editar</a></td>
+            <td><a th:href="@{'/processDelete/' + ${eletro.id}}">Deletar</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div th:fragment="carrinho(itens)" class="container">
+    <table style="border: 2px solid black;">
+        <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Preço</th>
+            <th>Marca</th>
+            <th>Categoria</th>
+            <th>Descrição</th>
+            <th>Modelo</th>
+            <th>Foto</th>
+            <th>Tirar do carrinho</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item : ${itens}">
+            <td th:text="${item.nome}"></td>
+            <td th:text="${item.preco}"></td>
+            <td th:text="${item.marca}"></td>
+            <td th:text="${item.categoria}"></td>
+            <td th:text="${item.descricao}"></td>
+            <td th:text="${item.modelo}"></td>
+            <td><img width="100px" th:src="@{'/img/' + ${item.imageUrl}}" alt="imagem"/></td>
+            <td><a th:href="@{'/removerCarrinho/' + ${item.id}}">Remover</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+</body>
+</html>
