@@ -17,7 +17,11 @@ import org.springframework.core.io.UrlResource;
 @Service
 public class FileStorageService {
 
+<<<<<<< HEAD
     private final Path root = Paths.get("src/main/resources/img");
+=======
+    private final Path root = Paths.get("src/img");
+>>>>>>> luan
 
     public void init() {
         try {

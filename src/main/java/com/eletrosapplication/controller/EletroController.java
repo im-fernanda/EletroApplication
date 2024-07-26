@@ -4,7 +4,13 @@ import com.eletrosapplication.domain.Eletro;
 import com.eletrosapplication.service.EletroService;
 import com.eletrosapplication.service.FileStorageService;
 import jakarta.servlet.http.Cookie;
+<<<<<<< HEAD
 import jakarta.servlet.http.HttpServletResponse;
+=======
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+>>>>>>> luan
 import jakarta.validation.Valid;
 import org.springframework.http.CacheControl;
 import org.springframework.stereotype.Controller;
@@ -34,17 +40,30 @@ public class EletroController {
 
 
     @GetMapping("/admin")
+<<<<<<< HEAD
     public String listAll(Model model, HttpServletResponse response) {
+=======
+    public String listAll(Model model, HttpServletResponse response, HttpSession session) {
+>>>>>>> luan
         // Pegando a lista de itens cadastrados, que não estão deletados
         List<Eletro> eletros = service.findAll();
 
         // Adicionando a lista a um model para passar pata o html
         model.addAttribute("eletros", eletros);
 
+<<<<<<< HEAD
         // Criando o cookie de visita
         Cookie cookie_visita  = new Cookie("visita", "true");
         cookie_visita.setMaxAge(24 * 60 * 60); // cookie de 24 horas
         response.addCookie(cookie_visita);
+=======
+        List<Eletro> carrinho = (List<Eletro>) session.getAttribute("carrinho");
+
+        int quantidade = (carrinho != null) ? carrinho.size() : 0;
+
+        System.out.println("Quantidade de itens no carrinho: " + quantidade);
+        model.addAttribute("quantidade", quantidade);
+>>>>>>> luan
 
         return "index";
     }
@@ -65,6 +84,12 @@ public class EletroController {
 
             // modifica com as novas informações pegas do html caso o eletro existir
             if(eletro_b.isPresent()) {
+<<<<<<< HEAD
+=======
+                eletro.setImageUrl(file.getOriginalFilename());
+                fileStorageService.save(file);
+
+>>>>>>> luan
                 service.update(eletro);
                 System.out.println("editou");
             }
