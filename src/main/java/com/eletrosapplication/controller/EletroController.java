@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 
@@ -54,7 +55,32 @@ public class EletroController {
         return "cadastroPage";
     }
 
-    @PostMapping("/processCadastroPage")
+    @PostMapping("/processSave/{editar_ou_cadastrar}")
+    public ModelAndView processSave(@ModelAttribute @Valid Eletro eletro, @PathVariable String editar_ou_cadastrar){
+        if(Objects.equals(editar_ou_cadastrar, "edit")){
+            // pega o id do eletro que foi passado por parametro na url
+            Optional<Eletro> eletro_b = service.findById(eletro.getId());
+
+            // modifica com as novas informações pegas do html caso o eletro existir
+            if(eletro_b.isPresent()) {
+                service.update(eletro);
+                System.out.println("editou");
+            }
+        }
+
+        if(Objects.equals(editar_ou_cadastrar, "cad")){
+            // salva o objeto no banco de dados com as informações pegas do html
+            service.create(eletro);
+            System.out.println("cadastrou");
+        }
+
+        ModelAndView modelAndView = new ModelAndView("index");
+        modelAndView.addObject("eletros", service.findAll());
+
+        return modelAndView;
+    }
+
+    /* @PostMapping("/processCadastroPage")
     public ModelAndView processCadastroPage(@ModelAttribute @Valid Eletro eletro){
         // salva o objeto no banco de dados com as informações pegas do html
         service.create(eletro);
@@ -64,7 +90,7 @@ public class EletroController {
         modelAndView.addObject("eletros", service.findAll());
 
         return modelAndView;
-    }
+    } */
 
     @GetMapping("/editPage/{id}")
     public ModelAndView editPage(@PathVariable String id) {
@@ -83,7 +109,7 @@ public class EletroController {
         return modelAndView;
     }
 
-    @PostMapping("/processEditPage")
+    /*@PostMapping("/processEditPage")
     public String processEditPage(@ModelAttribute @Valid Eletro eletro){
 
         // pega o id do eletro que foi passado por parametro na url
@@ -94,7 +120,7 @@ public class EletroController {
             service.update(eletro);
         }
         return "redirect:/index";
-    }
+    }*/
 
     @GetMapping("/processDelete/{id}")
     public String processDelete(@PathVariable String id){

@@ -7,7 +7,7 @@
 <body>
 
 <h1>Cadastro de filmes</h1>
-<form th:object="${eletro}" method="post" th:action="@{/processCadastroPage}" enctype="multipart/form-data">
+<form th:object="${eletro}" method="post" th:action="@{/processSave/{editar_ou_cadastrar}(editar_ou_cadastrar=${'cad'})}" enctype="multipart/form-data">
     <input type="hidden" th:field="*{id}" />
     Nome<input type="text" th:field="*{nome}" />
     Preco<input type="number" th:field="*{preco}" /><br />

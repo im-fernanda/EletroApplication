@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<form th:object="${eletro}" method="post" th:action="@{/processEditPage}">
+<form th:object="${eletro}" method="post" th:action="@{/processSave/{editar_ou_cadastrar}(editar_ou_cadastrar=${'edit'})}">
     <input type="hidden" th:field="*{id}" />
     Nome<input type="text" th:field="*{nome}" />
     Preco<input type="number" th:field="*{preco}" /><br />
