@@ -31,6 +31,8 @@
     <!-- Inclua o fragmento do carrinho -->
     <div th:replace="fragments/commons::carrinho(${itens})"></div>
 
+    <a th:href="@{/finalizarCompra}">Finalizar Compra</a>
+
     <div th:replace="fragments/commons::footer"></div>
 </body>
 </html>

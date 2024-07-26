@@ -84,4 +84,11 @@ public class CarrinhoController {
         }
         return "redirect:/admin";
     }
+
+    @GetMapping("/finalizarCompra")
+    public String finalizarCompra(HttpSession session) {
+            session.setAttribute("carrinho", new ArrayList<>());
+
+        return "redirect:/admin";
+    }
 }
