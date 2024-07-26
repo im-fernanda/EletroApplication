@@ -31,7 +31,7 @@ public class EletroController {
         this.fileStorageService = fileStorageService;
     }
 
-    @GetMapping("/index")
+    @GetMapping("/admin")
     public String listAll(Model model, HttpServletResponse response) {
         // Pegando a lista de itens cadastrados, que não estão deletados
         List<Eletro> eletros = service.findAll();
@@ -99,7 +99,7 @@ public class EletroController {
 
         // se o eletro não existir redireciona de volta para o index
         if(!eletro.isPresent()){
-            return new ModelAndView("redirect:/index");
+            return new ModelAndView("redirect:/admin");
         }
 
         // redireciona para a página de editar levando o eletro escolhido
@@ -127,6 +127,6 @@ public class EletroController {
         // "remove" o eletro do id passado pela url, trocando seu atributo isDeleted
         service.delete(id);
 
-        return "redirect:/index";
+        return "redirect:/admin";
     }
 }
