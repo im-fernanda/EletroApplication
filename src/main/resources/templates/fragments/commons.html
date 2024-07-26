@@ -1,10 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <body>
-$END$
+
+<header th:fragment="header">
+    <h1>EletroTADS</h1>
+</header>
+
+<footer th:fragment="footer">
+    <h6>Rodapé do site</h6>
+</footer>
+
+
+
+<div th:fragment="displayNome(nome)">
+    <p th:text="${nome} ?: 'ANÔNIMO'"></p>
+</div>
+
+<div th:fragment="tabelaEletro(eletros)" class="container">
+    <table style="border: 2px solid black;">
+        <tr>
+            <th>Nome</th>
+            <th>Preço</th>
+            <th>Marca</th>
+            <th>Categoria</th>
+            <th>Descrição</th>
+            <th>Modelo</th>
+            <th>Editar</th>
+            <th>Deletar</th>
+        </tr>
+        <tr th:each="eletro : ${eletros}">
+            <td th:text="${eletro.nome}"></td>
+            <td th:text="${eletro.preco}"></td>
+            <td th:text="${eletro.marca}"></td>
+            <td th:text="${eletro.categoria}"></td>
+            <td th:text="${eletro.descricao}"></td>
+            <td th:text="${eletro.modelo}"></td>
+            <td><a th:href="@{'/editPage/'+${eletro.id}}">Editar</a></td>
+            <td><a th:href="@{'/processDelete/'+${eletro.id}}">Deletar</a></td>
+        </tr>
+    </table>
+</div>
+
 </body>
 </html>

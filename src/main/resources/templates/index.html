@@ -3,6 +3,9 @@
 <head>
     <title>Index</title>
 
+    <!-- Inclui o header -->
+    <div th:include="fragments/commons :: header"></div>
+
     <style>
         th, td {
             border: 1px solid;
@@ -10,6 +13,7 @@
     </style>
 </head>
 <body>
+
 <table style="border: 1px solid">
     <thead>
     <tr>
@@ -40,5 +44,10 @@
 <form th:action="@{/cadastroPage}">
     <button type="submit">Cadastrar Produto</button>
 </form>
+
+
+
+<!-- Inclui o footer -->
+<div th:include="fragments/commons :: footer"></div>
 </body>
 </html>

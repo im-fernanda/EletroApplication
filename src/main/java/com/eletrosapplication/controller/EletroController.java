@@ -8,17 +8,16 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-
 
 @Controller
 public class EletroController {
@@ -56,7 +55,7 @@ public class EletroController {
     }
 
     @PostMapping("/processSave/{editar_ou_cadastrar}")
-    public ModelAndView processSave(@ModelAttribute @Valid Eletro eletro, @PathVariable String editar_ou_cadastrar){
+    public ModelAndView processSave(@ModelAttribute @Valid Eletro eletro, BindingResult result, @PathVariable String editar_ou_cadastrar){
         if(Objects.equals(editar_ou_cadastrar, "edit")){
             // pega o id do eletro que foi passado por parametro na url
             Optional<Eletro> eletro_b = service.findById(eletro.getId());
@@ -69,6 +68,11 @@ public class EletroController {
         }
 
         if(Objects.equals(editar_ou_cadastrar, "cad")){
+            if (result.hasErrors()) {
+                ModelAndView mav = new ModelAndView("cadastroPage");
+                mav.addObject("eletro", eletro);
+                return mav;
+            }
             // salva o objeto no banco de dados com as informações pegas do html
             service.create(eletro);
             System.out.println("cadastrou");

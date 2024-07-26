@@ -6,11 +6,7 @@ import jakarta.validation.constraints.Size;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
-
 import java.time.LocalDate;
-
-
-
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -35,9 +31,10 @@ public class Eletro {
     @NotBlank(message = "Categoria é obrigatória")
     private String categoria;
 
-    private String descricao;
+    @NotBlank(message = "Modelo é obrigatório")
     private String modelo;
-    private String imageUrl;
 
+    private String descricao;
+    private String imageUrl;
     private LocalDate isDeleted;
 }
