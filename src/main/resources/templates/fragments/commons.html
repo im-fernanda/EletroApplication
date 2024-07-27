@@ -39,9 +39,8 @@
 </head>
 <body>
 
-<!-- USER HEADER -->
-<header th:fragment="header_user">
-    <!-- TOP HEADER -->
+<!-- Fragmento para o TOP HEADER -->
+<div th:fragment="top_header">
     <div id="top-header">
         <div class="container">
             <ul class="header-links pull-left">
@@ -55,13 +54,12 @@
             </ul>
         </div>
     </div>
-    <!-- /TOP HEADER -->
+</div>
 
-    <!-- MAIN HEADER -->
+<!-- Fragmento para o MAIN HEADER USER-->
+<div th:fragment="main_header_user">
     <div id="header">
-        <!-- container -->
         <div class="container">
-            <!-- row -->
             <div class="row align-items-center">
                 <!-- LOGO -->
                 <div class="col-md-3">
@@ -80,67 +78,35 @@
                 <!-- ACCOUNT -->
                 <div class="col-md-3 text-right">
                     <div class="header-ctn">
-                        <!-- Cart -->
+                        <!-- Conteúdo específico para o header do usuário -->
                         <div class="dropdown">
                             <a th:href="@{/verCarrinho}">
                                 <i class="fa fa-shopping-cart"></i>
                                 <span>Seu carrinho</span>
                                 <div class="qty" th:text="${quantidade}">0</div>
                             </a>
-
                         </div>
-                        <!-- /Cart -->
 
-                        <!-- Menu Toggle -->
-                        <div class="menu-toggle">
-                            <a href="#">
-                                <i class="fa fa-bars"></i>
-                                <span>Menu</span>
-                            </a>
-                        </div>
-                        <!-- /Menu Toggle -->
                     </div>
                 </div>
                 <!-- /ACCOUNT -->
             </div>
-            <!-- row -->
-        </div>
-        <!-- container -->
+            </div>
     </div>
-    <!-- /MAIN HEADER -->
+</div>
 
-    </div>
-    <!-- row -->
-    </div>
-    <!-- container -->
-    </div>
-    <!-- /MAIN HEADER -->
+<!-- Fragmento para o HEADER USER-->
+<div th:fragment="header_user">
+    <header>
+        <div th:replace="::top_header"></div>
+        <div th:replace="::main_header_user"></div>
+    </header>
+</div>
 
-</header>
-
-<!-- HEADER ADMIN -->
-<header th:fragment="header_admin">
-    <!-- TOP HEADER -->
-    <div id="top-header-admin">
-        <div class="container">
-            <ul class="header-links pull-left">
-                <li><a href="#"><i class="fa fa-phone"></i> +55 (84) 3342-4800</a></li>
-                <li><a href="#"><i class="fa fa-envelope-o"></i> tads@ufrn.edu.br</a></li>
-                <li><a href="#"><i class="fa fa-map-marker"></i> 4J7P+QV - Rodovia RN 160, Km 03 s/n Distrito de, Macaíba - RN</a></li>
-            </ul>
-            <ul class="header-links pull-right">
-                <li><a href="#"><i class="fa-solid fa-brazilian-real-sign"></i> BRL</a></li>
-                <li><a href="#"><i class="fa fa-user-o"></i> Minha Conta</a></li>
-            </ul>
-        </div>
-    </div>
-    <!-- /TOP HEADER -->
-
-    <!-- MAIN HEADER -->
+<!-- Fragmento para o MAIN HEADER ADMIN -->
+<div th:fragment="main_header_admin">
     <div id="header-admin">
-        <!-- container -->
         <div class="container">
-            <!-- row -->
             <div class="row align-items-center">
                 <!-- LOGO -->
                 <div class="col-md-3">
@@ -159,29 +125,28 @@
                 <!-- ACCOUNT -->
                 <div class="col-md-3 text-right">
                     <div class="header-ctn">
-                        <div class="dropdown">
-                                <span>Teste</span>
+                        <!-- Conteúdo específico para o header do admin -->
+                        <div class="dropdown" >
+                            <span>Teste</span>
+                        </div>
 
-                        </div>
-                        <!-- Menu Toggle -->
-                        <div class="menu-toggle">
-                            <a href="#">
-                                <i class="fa fa-bars"></i>
-                                <span>Menu</span>
-                            </a>
-                        </div>
-                        <!-- /Menu Toggle -->
                     </div>
                 </div>
                 <!-- /ACCOUNT -->
             </div>
-            <!-- row -->
         </div>
-        <!-- container -->
     </div>
-    <!-- /MAIN HEADER -->
-</header>
-<!-- /HEADER ADMIN -->
+</div>
+
+
+<!-- Fragmento para o HEADER ADMIN-->
+<div th:fragment="header_admin">
+    <header>
+        <div th:replace="::top_header"></div>
+        <div th:replace="::main_header_admin"></div>
+    </header>
+</div>
+
 
 <!-- NAVIGATION -->
 <nav th:fragment="navigation">
