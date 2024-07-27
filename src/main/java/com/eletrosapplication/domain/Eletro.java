@@ -18,7 +18,7 @@ public class Eletro {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
-    @Size(min = 2, message = "Houve um erro no cadastro do campo título.")
+    @Size(min = 2, message = "Houve um erro no cadastro do campo nome.")
     @NotBlank (message = "Nome é obrigatório")
     String nome;
 

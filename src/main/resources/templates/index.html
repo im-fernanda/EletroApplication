@@ -19,8 +19,8 @@
 <!-- Inclua o fragmento dos produtos -->
 <div th:replace="fragments/commons::display_produtos"></div>
 
-<form th:action="@{/cadastroPage}" class="text-center mt-5">
-    <button type="submit" class="btn btn-primary">Cadastrar Produto</button>
+<form th:action="@{/cadastroPage}" class="form-container text-center mt-5">
+    <button type="submit" class="add-product">Cadastrar Produto</button>
 </form>
 
 <footer th:replace="fragments/commons::footer"> </footer>

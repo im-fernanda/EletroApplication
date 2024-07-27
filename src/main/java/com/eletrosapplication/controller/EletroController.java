@@ -58,7 +58,7 @@ public class EletroController {
     @PostMapping("/processSave/{editar_ou_cadastrar}")
     public ModelAndView processSave(
             @ModelAttribute @Valid Eletro eletro, BindingResult result,
-            @RequestParam("file") MultipartFile file, Errors errors,
+            @RequestParam("image") MultipartFile file, Errors errors,
             @PathVariable String editar_ou_cadastrar) {
 
         // Verifica se há erros após o upload do arquivo

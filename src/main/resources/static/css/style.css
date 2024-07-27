@@ -241,6 +241,10 @@ textarea.input {
   transition: all 0.2s;
 }
 
+.form-container {
+  padding: 20px; /* Define o padding em todos os lados do formulário */
+}
+
 .input-checkbox input[type="checkbox"]+label span:after {
   content: '✔';
   position: absolute;
@@ -292,8 +296,8 @@ textarea.input {
 \*----------------------------*/
 
 .section {
-  padding-top: 30px;
-  padding-bottom: 30px;
+  padding-top: 10px;
+  padding-bottom: 5px;
 }
 
 .section-title {
@@ -781,6 +785,26 @@ textarea.input {
   text-transform: uppercase;
 }
 
+.add-product {
+  position: relative;
+  border: 2px solid transparent;
+  height: 50px; /* Aumenta a altura do botão */
+  padding: 0 30px ;
+  background-color: #3c3d54;
+  color: #FFF;
+  text-transform: uppercase;
+  font-weight: 700;
+  border-radius: 40px;
+  -webkit-transition: 0.2s all;
+  transition: 0.2s all;
+}
+
+.add-product:hover {
+  background-color: #FFF;
+  color: #D10024;
+  border-color: #D10024;
+  padding: 0 30px;
+}
 /*=========================================================
 	05 -> HOT DEAL
 ===========================================================*/
