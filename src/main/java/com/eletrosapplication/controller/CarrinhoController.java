@@ -60,7 +60,11 @@ public class CarrinhoController {
         cookie_visita.setMaxAge(24 * 60 * 60); // cookie de 24 horas
         response.addCookie(cookie_visita);
 
+<<<<<<< HEAD
         return "carrinho";
+=======
+        return "verCarrinho";
+>>>>>>> 328f7919d3537266e752d09be5ec31f9f8351064
     }
 
     @GetMapping("/removerCarrinho/{id}")
