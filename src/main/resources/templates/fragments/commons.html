@@ -91,7 +91,7 @@
                 </div>
                 <!-- /ACCOUNT -->
             </div>
-            </div>
+        </div>
     </div>
 </div>
 
@@ -145,10 +145,10 @@
         <div id="responsive-nav">
             <!-- NAV -->
             <ul class="main-nav nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#">Produtos</a></li>
-                <li><a href="#">Laptops</a></li>
-                <li><a href="#">Smartphones</a></li>
+                <li class="active"><a href="#" style="padding: 1rem">Home</a></li>
+            </ul>
+            <ul class="main-nav nav navbar-nav" th:each="categoria : ${categorias}">
+                <li><a th:href="@{/getDisplayCategoria/{categoria}(categoria=${categoria})}" th:text="${categoria}" style="padding: 1rem"></a></li>
             </ul>
             <!-- /NAV -->
         </div>
@@ -293,6 +293,81 @@
 </div>
 <!-- DISPLAY PRODUTOS ADMIN  -->
 
+
+<!-- DISPLAY PRODUTOS CATEGORIA  -->
+<div th:fragment="display_produtos_categoria" class="section">
+    <div class="section">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+
+                <!-- section title -->
+                <div class="col-md-12">
+                    <div class="section-title">
+                        <h3 class="title" th:text="${categoria}"></h3>
+
+                    </div>
+                </div>
+                <!-- /section title -->
+                <!-- Products tab & slick -->
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="products-tabs">
+                            <!-- tab -->
+                            <div id="tab3" class="tab-pane active">
+                                <div class="products-slick" data-nav="#slick-nav-2">
+
+                                    <!-- product -->
+                                    <div class="product" th:each="eletro : ${eletros_categoria}">
+                                        <!-- Link to product details -->
+                                        <a th:href="@{/produtoDetails/{id}(id=${eletro.id})}" class="product-link">
+                                            <div class="product-img">
+                                                <img th:src="@{'/img/' + ${eletro.imageUrl}}" alt="Imagem do Eletro">
+                                            </div>
+
+                                            <div class="product-body">
+                                                <p class="product-category" th:text="${eletro.categoria}"></p>
+                                                <h3 class="product-name" th:text="${eletro.nome}"></h3>
+                                                <h4 class="product-price" th:text="${eletro.preco}"></h4>
+                                            </div>
+                                        </a>
+
+                                        <div class="product-actions">
+                                            <!-- Edit button -->
+                                            <a th:href="@{/editPage/{id}(id=${eletro.id})}" class="action-btn">
+                                                <i class="fa fa-pencil" title="Editar"></i>
+                                            </a>
+                                            <!-- Delete button -->
+                                            <a th:href="@{/processDelete/{id}(id=${eletro.id})}" class="action-btn" onclick="return confirm('Tem certeza que deseja excluir este produto?');">
+                                                <i class="fa fa-trash" title="Excluir"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <!-- /product -->
+
+                                </div>
+                                <!-- Slick navigation arrows -->
+                                <div id="slick-nav-3" class="products-slick-nav"></div>
+                            </div>
+                            <!-- /tab -->
+                        </div>
+                    </div>
+                </div>
+                <!-- Products tab & slick -->
+
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+</div>
+<!-- DISPLAY PRODUTOS CATEGORIA  -->
+
+
+
+
+
 <!-- FOOTER -->
 <footer id="footer" th:fragment="footer">
     <!-- top footer -->
@@ -312,11 +387,8 @@
                 <div class="col-md-3 col-xs-6">
                     <div class="footer">
                         <h3 class="footer-title">Categorias</h3>
-                        <ul class="footer-links">
-                            <li th:each="categoria : ${categorias}">
-                                <a th:href="@{'/categoria/' + ${categoria.id}}"
-                                   th:text="${categoria.nome}"></a>
-                            </li>
+                        <ul class="footer-links" th:each="categoria : ${categorias}">
+                            <a th:href="@{/getDisplayCategoria/{categoria}(categoria=${categoria})}"><li th:text="${categoria}" style="color: #B9BABC"></li></a>
                         </ul>
                     </div>
                 </div>

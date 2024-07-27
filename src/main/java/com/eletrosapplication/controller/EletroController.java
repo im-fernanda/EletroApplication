@@ -14,10 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 @Controller
 public class EletroController {
@@ -31,17 +28,28 @@ public class EletroController {
     }
 
     @GetMapping("/admin")
-    public String listAll(Model model, HttpSession session) {
+    public String getAdminPahge(Model model, HttpSession session) {
         // Pegando a lista de itens cadastrados, que não estão deletados
         List<Eletro> eletros = service.findAll();
 
         // Adicionando a lista a um model para passar para o HTML
         model.addAttribute("eletros", eletros);
+
+        List<String> categorias = new ArrayList<>();
+
+        for (Eletro eletro : eletros) {
+            if(!categorias.contains(eletro.getCategoria())){
+                categorias.add(eletro.getCategoria());
+            }
+        }
+
+        model.addAttribute("categorias", categorias);
+
         return "admin";
     }
 
     @GetMapping("/index")
-    public String index(Model model, HttpSession session) {
+    public String getUserPage(Model model, HttpSession session) {
         // Pegando a lista de itens cadastrados, que não estão deletados
         List<Eletro> eletros = service.findAll();
 
@@ -53,6 +61,16 @@ public class EletroController {
 
         System.out.println("Quantidade de itens no carrinho: " + quantidade);
         model.addAttribute("quantidade", quantidade);
+
+        List<String> categorias = new ArrayList<>();
+
+        for (Eletro eletro : eletros) {
+            if(!categorias.contains(eletro.getCategoria())){
+                categorias.add(eletro.getCategoria());
+            }
+        }
+
+        model.addAttribute("categorias", categorias);
 
         return "index";
     }
@@ -150,5 +168,21 @@ public class EletroController {
         session.invalidate();
         // Redirecionar para a página inicial
         return "redirect:/index";
+    }
+
+    @GetMapping("/getDisplayCategoria/{categoria}")
+    public String getDisplayCategoria(@PathVariable String categoria, Model model) {
+        List<Eletro> eletros = service.findAll();
+        List<Eletro> eletro_categoria = new ArrayList<>();
+
+        for (Eletro eletro : eletros) {
+            if(eletro.getCategoria().equals(categoria)){
+                eletro_categoria.add(eletro);
+            }
+        }
+
+        model.addAttribute("eletros_categoria", eletro_categoria);
+
+        return "categoria";
     }
 }
