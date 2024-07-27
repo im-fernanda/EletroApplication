@@ -6,7 +6,70 @@
     <title>EletroTADS - User</title>
 
     <div th:replace="fragments/commons::bootcss"></div>
-    <div th:replace="fragments/commons::header_user"></div>
+    <div th:replace="fragments/commons::top-header"></div>
+
+
+        <!-- MAIN HEADER -->
+        <div id="header">
+            <!-- container -->
+            <div class="container">
+                <!-- row -->
+                <div class="row align-items-center">
+                    <!-- LOGO -->
+                    <div class="col-md-3">
+                        <div class="header-logo">
+                            <img src="/img/logo.png" alt="Logo">
+                        </div>
+                    </div>
+                    <!-- /LOGO -->
+
+                    <!-- Empty Middle Area -->
+                    <div class="col-md-6">
+                        <!-- Esta coluna é intencionalmente deixada vazia -->
+                    </div>
+                    <!-- /SPACE -->
+
+                    <!-- ACCOUNT -->
+                    <div class="col-md-3 text-right">
+                        <div class="header-ctn">
+                            <!-- Cart -->
+                            <div class="dropdown">
+                                <a th:href="@{/verCarrinho}">
+                                    <i class="fa fa-shopping-cart"></i>
+                                    <span>Seu carrinho</span>
+                                    <div class="qty" th:text="${quantidade}">0</div>
+                                </a>
+
+                            </div>
+                            <!-- /Cart -->
+
+                            <!-- Menu Toggle -->
+                            <div class="menu-toggle">
+                                <a href="#">
+                                    <i class="fa fa-bars"></i>
+                                    <span>Menu</span>
+                                </a>
+                            </div>
+                            <!-- /Menu Toggle -->
+                        </div>
+                    </div>
+                    <!-- /ACCOUNT -->
+                </div>
+                <!-- row -->
+            </div>
+            <!-- container -->
+        </div>
+        <!-- /MAIN HEADER -->
+
+        </div>
+        <!-- row -->
+        </div>
+        <!-- container -->
+        </div>
+        <!-- /MAIN HEADER -->
+
+    </header>
+
     <div th:replace="fragments/commons::navigation"></div>
 
 </head>
