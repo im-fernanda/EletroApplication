@@ -6,46 +6,24 @@
     <title>EletroTADS</title>
 
     <div th:replace="fragments/commons::bootcss"></div>
+    <div th:replace="fragments/commons::header"></div>
+    <div th:replace="fragments/commons::navigation"></div>
 
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            padding: 8px;
-            text-align: left;
-            border: 1px solid #ddd;
-        }
-        th {
-            background-color: #f4f4f4;
-        }
-        img {
-            max-width: 100px;
-            height: auto;
-        }
-    </style>
 </head>
 <body>
 
-<div th:replace="fragments/commons::header"></div>
-
-<div th:replace="fragments/commons::navigation"></div>
-
+<
 <!-- Exibe a mensagem se existir -->
 <p th:if="${msg}" class="message" th:text="${msg}"></p>
 
-<!-- Inclua o fragmento da tabela
-<div th:replace="fragments/commons::tabelaEletro(${eletros})"></div> -->
+<!-- Inclua o fragmento dos produtos -->
 <div th:replace="fragments/commons::display_produtos"></div>
 
-<form th:action="@{/cadastroPage}">
-    <button type="submit">Cadastrar Produto</button>
+<form th:action="@{/cadastroPage}" class="text-center mt-5">
+    <button type="submit" class="btn btn-primary">Cadastrar Produto</button>
 </form>
 
-
 <footer th:replace="fragments/commons::footer"> </footer>
-
 <div th:replace="fragments/commons::bootjs"></div>
 
 </body>

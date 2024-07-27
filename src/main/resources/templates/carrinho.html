@@ -3,66 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carrinho</title>
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            padding: 8px;
-            text-align: left;
-            border: 1px solid #ddd;
-        }
-        th {
-            background-color: #f4f4f4;
-        }
-        img {
-            max-width: 100px;
-            height: auto;
-        }
-    </style>
+    <title>EletroTADS - Carrinho </title>
+
+    <div th:replace="fragments/commons::bootcss"></div>
+    <div th:replace="fragments/commons::header"></div>
+    <div th:replace="fragments/commons::navigation"></div>
+
 </head>
 <body>
 
-<div th:replace="fragments/commons::header"></div>
+<!-- BREADCRUMB -->
+<div id="breadcrumb" class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="breadcrumb-header">Checkout</h3>
+                <ul class="breadcrumb-tree">
+                    <li><a href="#">Home</a></li>
+                    <li class="active">Checkout</li>
+                </ul>
+            </div>
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /BREADCRUMB -->
 
-<h1>Carrinho</h1>
+<!-- SECTION -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <!-- Order Details -->
+            <div class="col-md-5 order-details">
+                <div class="section-title text-center">
+                    <h3 class="title">Your Order</h3>
+                </div>
+                <div class="order-summary">
+                    <div class="order-col">
+                        <div><strong>PRODUCT</strong></div>
+                        <div><strong>TOTAL</strong></div>
+                    </div>
+                    <div class="order-products">
+                        <div class="order-col">
+                            <div>1x Product Name Goes Here</div>
+                            <div>$980.00</div>
+                        </div>
+                        <div class="order-col">
+                            <div>2x Product Name Goes Here</div>
+                            <div>$980.00</div>
+                        </div>
+                    </div>
+                    <div class="order-col">
+                        <div>Shiping</div>
+                        <div><strong>FREE</strong></div>
+                    </div>
+                    <div class="order-col">
+                        <div><strong>TOTAL</strong></div>
+                        <div><strong class="order-total">$2940.00</strong></div>
+                    </div>
+                </div>
 
-<!-- Exibe a mensagem se existir -->
-<p th:if="${msg}" class="message" th:text="${msg}"></p>
 
-<!-- Exibe a tabela apenas se o carrinho não estiver vazio -->
-<table th:if="${itens != null and #lists.size(itens) > 0}">
-    <thead>
-    <tr>
-        <th>Nome</th>
-        <th>Preço</th>
-        <th>Marca</th>
-        <th>Categoria</th>
-        <th>Modelo</th>
-        <th>Descrição</th>
-        <th>Imagem</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="eletro : ${itens}">
-        <td th:text="${eletro.nome}"></td>
-        <td th:text="${eletro.preco}"></td>
-        <td th:text="${eletro.marca}"></td>
-        <td th:text="${eletro.modelo}"></td>
-        <td>
-            <img th:src="@{'/img/' + ${eletro.imageUrl}}" alt="Imagem do Eletro"/>
-        </td>
-    </tr>
-    </tbody>
-</table>
-
-<a href="#" th:href="@{/index}">Voltar para a Lista</a>
-
-<footer th:fragment="footer">
-    <h6>Rodapé do site</h6>
-</footer>
-
+                <a href="#" class="primary-btn order-submit">Finalizar pedido</a>
+            </div>
+            <!-- /Order Details -->
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+    </div>
 </body>
 </html>
