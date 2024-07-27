@@ -39,7 +39,8 @@
 </head>
 <body>
 
-<header th:fragment="header">
+<!-- USER HEADER -->
+<header th:fragment="header_user">
     <!-- TOP HEADER -->
     <div id="top-header">
         <div class="container">
@@ -66,7 +67,6 @@
                 <div class="col-md-3">
                     <div class="header-logo">
                         <img src="/img/logo.png" alt="Logo">
-
                     </div>
                 </div>
                 <!-- /LOGO -->
@@ -117,6 +117,71 @@
     <!-- /MAIN HEADER -->
 
 </header>
+
+<!-- HEADER ADMIN -->
+<header th:fragment="header_admin">
+    <!-- TOP HEADER -->
+    <div id="top-header-admin">
+        <div class="container">
+            <ul class="header-links pull-left">
+                <li><a href="#"><i class="fa fa-phone"></i> +55 (84) 3342-4800</a></li>
+                <li><a href="#"><i class="fa fa-envelope-o"></i> tads@ufrn.edu.br</a></li>
+                <li><a href="#"><i class="fa fa-map-marker"></i> 4J7P+QV - Rodovia RN 160, Km 03 s/n Distrito de, Macaíba - RN</a></li>
+            </ul>
+            <ul class="header-links pull-right">
+                <li><a href="#"><i class="fa-solid fa-brazilian-real-sign"></i> BRL</a></li>
+                <li><a href="#"><i class="fa fa-user-o"></i> Minha Conta</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- /TOP HEADER -->
+
+    <!-- MAIN HEADER -->
+    <div id="header-admin">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row align-items-center">
+                <!-- LOGO -->
+                <div class="col-md-3">
+                    <div class="header-logo">
+                        <img src="/img/logo.png" alt="Logo">
+                    </div>
+                </div>
+                <!-- /LOGO -->
+
+                <!-- Empty Middle Area -->
+                <div class="col-md-6">
+                    <!-- Esta coluna é intencionalmente deixada vazia -->
+                </div>
+                <!-- /SPACE -->
+
+                <!-- ACCOUNT -->
+                <div class="col-md-3 text-right">
+                    <div class="header-ctn">
+                        <div class="dropdown">
+                                <span>Teste</span>
+
+                        </div>
+                        <!-- Menu Toggle -->
+                        <div class="menu-toggle">
+                            <a href="#">
+                                <i class="fa fa-bars"></i>
+                                <span>Menu</span>
+                            </a>
+                        </div>
+                        <!-- /Menu Toggle -->
+                    </div>
+                </div>
+                <!-- /ACCOUNT -->
+            </div>
+            <!-- row -->
+        </div>
+        <!-- container -->
+    </div>
+    <!-- /MAIN HEADER -->
+</header>
+<!-- /HEADER ADMIN -->
 
 <!-- NAVIGATION -->
 <nav th:fragment="navigation">
