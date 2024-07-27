@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-    <title>Electro - HTML Ecommerce Template</title>
+    <title>EletroTADS - Ecommerce </title>
 
     <!-- Google font -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
@@ -45,10 +45,10 @@
             <ul class="header-links pull-left">
                 <li><a href="#"><i class="fa fa-phone"></i> +55 (84) 3342-4800</a></li>
                 <li><a href="#"><i class="fa fa-envelope-o"></i> tads@ufrn.edu.br</a></li>
-                <li><a href="#"><i class="fa fa-map-marker"></i>  4J7P+QV - Rodovia RN 160, Km 03 s/n Distrito de, MacaÃ­ba - RN</a></li>
+                <li><a href="#"><i class="fa fa-map-marker"></i> 4J7P+QV - Rodovia RN 160, Km 03 s/n Distrito de, Macaíba - RN</a></li>
             </ul>
             <ul class="header-links pull-right">
-                <li><a href="#"><i class="fa fa-dollar"></i> BRL</a></li>
+                <li><a href="#"><i class="fa-solid fa-brazilian-real-sign"></i> BRL</a></li>
                 <li><a href="#"><i class="fa fa-user-o"></i> Minha Conta</a></li>
             </ul>
         </div>
@@ -70,50 +70,64 @@
                     </div>
                 </div>
                 <!-- /LOGO -->
+
                 <!-- ACCOUNT -->
                 <div class="col-md-3 clearfix">
-                    <!-- Cart -->
-                    <div class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-                            <i class="fa fa-shopping-cart"></i>
-                            <span>Carrinho</span>
-                            <div class="qty">3</div>
-                        </a>
-                        <div class="cart-dropdown">
-                            <div class="cart-list">
-                                <div class="product-widget">
-                                    <div class="product-img">
-                                        <img src="./img/product01.png" alt="">
-                                    </div>
-                                    <div class="product-body">
-                                        <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                        <h4 class="product-price"><span class="qty">1x</span>$980.00</h4>
-                                    </div>
-                                    <button class="delete"><i class="fa fa-close"></i></button>
-                                </div>
 
-                                <div class="product-widget">
-                                    <div class="product-img">
-                                        <img src="./img/product02.png" alt="">
+                    <div class="header-ctn">
+                        <!-- Wishlist -->
+                        <div>
+                            <a href="#">
+                                <i class="fa fa-heart-o"></i>
+                                <span>Your Wishlist</span>
+                                <div class="qty">2</div>
+                            </a>
+                        </div>
+                        <!-- /Wishlist -->
+
+                        <!-- Cart -->
+                        <div class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                                <i class="fa fa-shopping-cart"></i>
+                                <span>Seu Carrinho</span>
+                                <div class="qty">3</div>
+                            </a>
+                            <div class="cart-dropdown">
+                                <div class="cart-list">
+                                    <div class="product-widget">
+                                        <div class="product-img">
+                                            <img src="./img/product01.png" alt="">
+                                        </div>
+                                        <div class="product-body">
+                                            <h3 class="product-name"><a href="#">product name goes here</a></h3>
+                                            <h4 class="product-price"><span class="qty">1x</span>$980.00</h4>
+                                        </div>
+                                        <button class="delete"><i class="fa fa-close"></i></button>
                                     </div>
-                                    <div class="product-body">
-                                        <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                        <h4 class="product-price"><span class="qty">3x</span>$980.00</h4>
+
+                                    <div class="product-widget">
+                                        <div class="product-img">
+                                            <img src="./img/product02.png" alt="">
+                                        </div>
+                                        <div class="product-body">
+                                            <h3 class="product-name"><a href="#">product name goes here</a></h3>
+                                            <h4 class="product-price"><span class="qty">3x</span>$980.00</h4>
+                                        </div>
+                                        <button class="delete"><i class="fa fa-close"></i></button>
                                     </div>
-                                    <button class="delete"><i class="fa fa-close"></i></button>
                                 </div>
-                            </div>
-                            <div class="cart-summary">
-                                <small>3 Item(s) selected</small>
-                                <h5>SUBTOTAL: $2940.00</h5>
-                            </div>
-                            <div class="cart-btns">
-                                <a href="#">View Cart</a>
-                                <a href="#" onclick="logout()">Logout  <i class="fa fa-arrow-circle-right"></i></a>
+                                <div class="cart-summary">
+                                    <small>3 Item(s) selected</small>
+                                    <h5>SUBTOTAL: $2940.00</h5>
+                                </div>
+                                <div class="cart-btns">
+                                    <a href="#">View Cart</a>
+                                    <a href="#" onclick="logout()">Logout  <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- /Cart -->
+                        <!-- /Cart -->
+
                     <!-- Menu Toogle -->
                     <div class="menu-toggle">
                         <a href="#">
@@ -134,7 +148,7 @@
 </header>
 
 <!-- NAVIGATION -->
-<nav id="navigation">
+<nav th:fragment="navigation">
     <!-- container -->
     <div class="container">
         <!-- responsive-nav -->
@@ -156,7 +170,7 @@
 <!-- /NAVIGATION -->
 
 <!-- SECTION -->
-<div class="section">
+<div th:fragment="display_produtos" class="section">
     <!-- container -->
     <div class="container">
         <!-- row -->
@@ -177,7 +191,7 @@
                                 <img src="./img/product07.png" alt="">
                             </div>
                             <div class="product-body">
-                                <p class="product-category">Category</p>
+                                <p class="product-category">Categoria</p>
                                 <h3 class="product-name"><a href="#">product name goes here</a></h3>
                                 <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
                             </div>
@@ -211,46 +225,6 @@
                         <!-- product widget -->
                     </div>
 
-                    <div>
-                        <!-- product widget -->
-                        <div class="product-widget">
-                            <div class="product-img">
-                                <img src="./img/product01.png" alt="">
-                            </div>
-                            <div class="product-body">
-                                <p class="product-category">Category</p>
-                                <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-                            </div>
-                        </div>
-                        <!-- /product widget -->
-
-                        <!-- product widget -->
-                        <div class="product-widget">
-                            <div class="product-img">
-                                <img src="./img/product02.png" alt="">
-                            </div>
-                            <div class="product-body">
-                                <p class="product-category">Category</p>
-                                <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-                            </div>
-                        </div>
-                        <!-- /product widget -->
-
-                        <!-- product widget -->
-                        <div class="product-widget">
-                            <div class="product-img">
-                                <img src="./img/product03.png" alt="">
-                            </div>
-                            <div class="product-body">
-                                <p class="product-category">Category</p>
-                                <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-                            </div>
-                        </div>
-                        <!-- product widget -->
-                    </div>
                 </div>
             </div>
 
@@ -277,48 +251,9 @@
                         </div>
                         <!-- /product widget -->
 
-                        <!-- product widget -->
-                        <div class="product-widget">
-                            <div class="product-img">
-                                <img src="./img/product05.png" alt="">
-                            </div>
-                            <div class="product-body">
-                                <p class="product-category">Category</p>
-                                <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-                            </div>
-                        </div>
-                        <!-- /product widget -->
-
-                        <!-- product widget -->
-                        <div class="product-widget">
-                            <div class="product-img">
-                                <img src="./img/product06.png" alt="">
-                            </div>
-                            <div class="product-body">
-                                <p class="product-category">Category</p>
-                                <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-                            </div>
-                        </div>
-                        <!-- product widget -->
-                    </div>
-
-                    <div>
-                        <!-- product widget -->
-                        <div class="product-widget">
-                            <div class="product-img">
-                                <img src="./img/product07.png" alt="">
-                            </div>
-                            <div class="product-body">
-                                <p class="product-category">Category</p>
-                                <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-                            </div>
-                        </div>
-                        <!-- /product widget -->
 
                     </div>
+
                 </div>
             </div>
 
@@ -340,12 +275,12 @@
             <div class="row">
                 <div class="col-md-3 col-xs-6">
                     <div class="footer">
-                        <h3 class="footer-title">About Us</h3>
+                        <h3 class="footer-title">Sobre</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.</p>
                         <ul class="footer-links">
                             <li><a href="#"><i class="fa fa-phone"></i> +55 (84) 3342-4800</a></li>
                             <li><a href="#"><i class="fa fa-envelope-o"></i> tads@ufrn.edu.br</a></li>
-                            <li><a href="#"><i class="fa fa-map-marker"></i>  4J7P+QV - Rodovia RN 160, Km 03 s/n Distrito de, MacaÃ­ba - RN</a></li>
+                            <li><a href="#"><i class="fa fa-map-marker"></i> 4J7P+QV - Rodovia RN 160, Km 03 s/n Distrito de, Macaíba - RN</a></li>
                         </ul>
                     </div>
                 </div>
@@ -366,18 +301,18 @@
 
                 <div class="col-md-3 col-xs-6">
                     <div class="footer">
-                        <h3 class="footer-title">InformaÃ§Ãµes</h3>
+                        <h3 class="footer-title">Informações</h3>
                         <ul class="footer-links">
                             <li><a href="#">Sobre</a></li>
                             <li><a href="#">Contato</a></li>
-                            <li><a href="#">Termos & CondiÃ§Ãµes</a></li>
+                            <li><a href="#">Termos & Condições</a></li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="col-md-3 col-xs-6">
                     <div class="footer">
-                        <h3 class="footer-title">ServiÃ§os</h3>
+                        <h3 class="footer-title">Serviços</h3>
                         <ul class="footer-links">
                             <li><a href="#">Minha Conta</a></li>
                             <li><a href="#">Carrinho</a></li>
@@ -419,10 +354,10 @@
         <thead>
         <tr>
             <th>Nome</th>
-            <th>PreÃ§o</th>
+            <th>Preço</th>
             <th>Marca</th>
             <th>Categoria</th>
-            <th>DescriÃ§Ã£o</th>
+            <th>Descrição</th>
             <th>Modelo</th>
             <th>Imagem</th>
             <th>Editar</th>
