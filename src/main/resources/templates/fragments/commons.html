@@ -181,7 +181,7 @@
                         <div class="products-tabs">
                             <!-- tab -->
                             <div id="tab1" class="tab-pane active">
-                                <div class="products-slick" data-nav="#slick-nav-1">
+                                <div class="products-slick " data-nav="#slick-nav-1">
 
                                     <!-- product -->
                                     <div class="product" th:each="eletro : ${eletros}">
@@ -206,9 +206,6 @@
 
                                 </div>
                                 <!-- Slick navigation arrows -->
-                                <button class="slick-prev">Previous</button>
-                                <button class="slick-next">Next</button>
-                                <!-- /Slick navigation arrows -->
                                 <div id="slick-nav-1" class="products-slick-nav"></div>
                             </div>
                             <!-- /tab -->
@@ -280,9 +277,6 @@
 
                                 </div>
                                 <!-- Slick navigation arrows -->
-                                <button class="slick-prev">Previous</button>
-                                <button class="slick-next">Next</button>
-                                <!-- /Slick navigation arrows -->
                                 <div id="slick-nav-2" class="products-slick-nav"></div>
                             </div>
                             <!-- /tab -->
@@ -377,40 +371,6 @@
     <!-- /bottom footer -->
 </footer>
 <!-- /FOOTER -->
-
-<!-- Display da tabela dos produtos
-<div th:fragment="tabelaEletro(eletros)" class="container">
-    <table style="border: 2px solid black;">
-        <thead>
-        <tr>
-            <th>Nome</th>
-            <th>Preço</th>
-            <th>Marca</th>
-            <th>Categoria</th>
-            <th>Descrição</th>
-            <th>Modelo</th>
-            <th>Imagem</th>
-            <th>Editar</th>
-            <th>Deletar</th>
-            <th>Add carrinho</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="eletro : ${eletros}">
-            <td th:text="${eletro.nome}"></td>
-            <td th:text="${eletro.preco}"></td>
-            <td th:text="${eletro.marca}"></td>
-            <td th:text="${eletro.categoria}"></td>
-            <td th:text="${eletro.descricao}"></td>
-            <td th:text="${eletro.modelo}"></td>
-            <td><img th:src="@{'/img/' + ${eletro.imageUrl}}" alt="Imagem do Eletro"/></td>
-            <td><a th:href="@{'/editPage/' + ${eletro.id}}">Editar</a></td>
-            <td><a th:href="@{'/processDelete/' + ${eletro.id}}">Deletar</a></td>
-            <td><a th:href="@{/adicionarCarrinho/{id}(id=${eletro.id})}">Add ao Carrinho</a></td>
-        </tr>
-        </tbody>
-    </table>
-</div> -->
 
 <div th:fragment="bootjs">
     <!-- jQuery Plugins -->
