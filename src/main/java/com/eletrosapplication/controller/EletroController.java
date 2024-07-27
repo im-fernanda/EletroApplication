@@ -37,7 +37,6 @@ public class EletroController {
 
         // Adicionando a lista a um model para passar para o HTML
         model.addAttribute("eletros", eletros);
-
         return "admin";
     }
 
@@ -56,6 +55,17 @@ public class EletroController {
         model.addAttribute("quantidade", quantidade);
 
         return "index";
+    }
+
+    @GetMapping("/categorias")
+    public String getCategorias(Model model) {
+        List<Eletro> eletros = service.findAll();
+
+        // Extrair categorias distintas
+        //FazerList<Categoria> categorias =
+
+        //model.addAttribute("categorias", categorias);
+        return "index"; // Nome do template Thymeleaf onde a div está localizada
     }
 
     @GetMapping("/cadastroPage")

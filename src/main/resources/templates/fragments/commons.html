@@ -95,7 +95,7 @@
     </div>
 </div>
 
-<!-- Fragmento para o HEADER USER-->
+<!-- Fragmento para o HEADER USER -->
 <div th:fragment="header_user">
     <header>
         <div th:replace="::top_header"></div>
@@ -122,24 +122,13 @@
                 </div>
                 <!-- /SPACE -->
 
-                <!-- ACCOUNT -->
-                <div class="col-md-3 text-right">
-                    <div class="header-ctn">
-                        <!-- Conteúdo específico para o header do admin -->
-                        <div class="dropdown" >
-                            <span>Teste</span>
-                        </div>
-
-                    </div>
-                </div>
-                <!-- /ACCOUNT -->
             </div>
         </div>
     </div>
 </div>
 
 
-<!-- Fragmento para o HEADER ADMIN-->
+<!-- Fragmento para o HEADER ADMIN -->
 <div th:fragment="header_admin">
     <header>
         <div th:replace="::top_header"></div>
@@ -326,15 +315,14 @@
 
                     </div>
                 </div>
-
                 <div class="col-md-3 col-xs-6">
                     <div class="footer">
                         <h3 class="footer-title">Categorias</h3>
                         <ul class="footer-links">
-                            <li><a href="#">Laptops</a></li>
-                            <li><a href="#">Smartphones</a></li>
-                            <li><a href="#">Cameras</a></li>
-                            <li><a href="#">Accessories</a></li>
+                            <li th:each="categoria : ${categorias}">
+                                <a th:href="@{'/categoria/' + ${categoria.id}}"
+                                   th:text="${categoria.nome}"></a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -357,7 +345,7 @@
                         <h3 class="footer-title">Serviços</h3>
                         <ul class="footer-links">
                             <li><a href="#">Minha Conta</a></li>
-                            <li><a href="#">Carrinho</a></li>
+                            <li><a href="#">Ajuda</a></li>
                         </ul>
                     </div>
                 </div>
