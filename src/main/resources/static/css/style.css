@@ -67,6 +67,7 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0 0 10px;
 }
 
+
 a {
   color: #2B2D42;
   font-weight: 500;
@@ -491,6 +492,10 @@ textarea.input {
 
 .header-logo {
   float: left;
+  color: #fff;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 3rem 0 1rem;
 }
 
 .header-logo .logo img {
@@ -2259,12 +2264,17 @@ textarea.input {
   [class*='col-xs'] {
     width: 100%;
   }
+
   .store-grid {
     float: none;
     margin-top: 10px;
   }
+
   .store-pagination {
     float: none;
     margin-top: 10px;
   }
+
+
+
 }

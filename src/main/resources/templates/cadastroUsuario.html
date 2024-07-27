@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EletroTADS - Cadastro de Usuário</title>
+
+    <!-- Custom CSS for centering -->
+    <style>
+        .centered-container {
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            min-height: 100vh; /* Ensure full height */
+            padding: 20px;
+        }
+
+        .registration-form {
+            max-width: 400px;
+            width: 100%;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .registration-form h1 {
+            color: #2B2D42;
+            margin-bottom: 20px;
+        }
+
+        .registration-form input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .registration-form button {
+            background-color: #D10024;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            width: 100%;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .registration-form button:hover {
+            opacity: 0.9;
+        }
+
+        .registration-form .form-group {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            justify-content: flex-start;
+        }
+
+        .registration-form .form-group input[type="checkbox"] {
+            margin-right: 10px; /* Space between checkbox and label */
+        }
+
+        .registration-form label {
+            font-size: 14px;
+            color: #2B2D42;
+        }
+
+        .registration-form a {
+            color: #2B2D42;
+            text-decoration: none;
+            font-size: 14px;
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        .registration-form a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<!-- SECTION -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row centered-container">
+            <!-- Registration Form -->
+            <div class="registration-form">
+                <h1>Cadastre-se</h1>
+                <form action="#" method="post" th:action="@{/processCadastroUsuario}">
+                    <input type="text" name="username" placeholder="Usuário" required>
+                    <input type="password" name="password" placeholder="Senha" required>
+                    <div class="form-group">
+                        <label>Administrador: </label>
+                        <input type="checkbox" id="isAdmin" name="isAdmin">
+                    </div>
+                    <button type="submit">Cadastrar</button>
+                </form>
+                <a href="#" th:href="@{/login}">Já tem uma conta? Faça login</a>
+            </div>
+            <!-- /Registration Form -->
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+
+</body>
+</html>

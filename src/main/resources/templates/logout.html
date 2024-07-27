@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EletroTADS - Logout</title>
+
+    <div th:replace="fragments/commons::bootcss"></div>
+
+
+    <!-- Custom CSS for centering -->
+    <style>
+        .centered-container {
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            min-height: 100vh; /* Ensure full height */
+            padding: 20px;
+        }
+
+        .logout-form {
+            max-width: 400px;
+            width: 100%;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .logout-form h1 {
+            color: #2B2D42;
+            margin-bottom: 20px;
+        }
+
+        .logout-form p {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .logout-form button {
+            background-color: #D10024;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            width: 100%;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .logout-form button:hover {
+            opacity: 0.9;
+        }
+
+        .logout-form a {
+            color: #2B2D42;
+            text-decoration: none;
+            font-size: 14px;
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        .logout-form a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+
+
+<!-- SECTION -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row centered-container">
+            <!-- Logout Confirmation -->
+            <div class="logout-form">
+                <h1>Tem certeza de que deseja sair?</h1>
+
+                <form action="#" method="post" th:action="@{/logout}">
+                    <button type="submit">Sair</button>
+                </form>
+                <a href="#" th:href="@{/}">Cancelar</a>
+            </div>
+            <!-- /Logout Confirmation -->
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+
+</body>
+</html>

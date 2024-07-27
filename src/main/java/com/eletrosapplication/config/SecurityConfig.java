@@ -1,41 +1,84 @@
-/* package com.eletrosapplication.config;
+package com.eletrosapplication.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
     @Bean
-    public SecurityFilterChain configure(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
                 .authorizeHttpRequests(auth -> {
-                    auth.requestMatchers("/").permitAll();
-                    auth.requestMatchers("/index").permitAll();
+                    auth.requestMatchers("/").authenticated();
+                    auth.requestMatchers("/index").hasRole("USER");
+                    auth.requestMatchers("/verCarrinho").hasRole("USER");
+                    auth.requestMatchers("/adicionarCarrinho/{id}").hasRole("USER");
+                    auth.requestMatchers("/removerCarrinho/{id}").hasRole("USER");
+                    auth.requestMatchers("/finalizarCompra").hasRole("USER");
+                    auth.requestMatchers("/admin").hasRole("ADMIN");
                     auth.requestMatchers("/cadastroPage").hasRole("ADMIN");
-                    auth.anyRequest().permitAll();
+                    auth.requestMatchers("/editPage/{id}").hasRole("ADMIN");
+                    auth.requestMatchers("/processDelete/{id}").hasRole("ADMIN");
+                    auth.requestMatchers("/processSave/{editar_ou_cadastrar}").hasRole("ADMIN");
+                    auth.requestMatchers("/cadastroUsuario").permitAll();
+                    auth.requestMatchers("/processCadastroUsuario").permitAll();
+                    auth.anyRequest().authenticated();
                 })
-                .formLogin(login -> login.loginPage("/login"))
-                .logout(l -> {
-                    l.logoutUrl("/logout");
-                    l.clearAuthentication(true);
-                    l.deleteCookies().invalidateHttpSession(true);
-                })
+                .formLogin(login -> login
+                        .loginPage("/login")
+                        .permitAll()
+                        .successHandler(authenticationSuccessHandler())
+                )
+                .logout(logout -> logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessHandler(logoutSuccessHandler())
+                        .permitAll()
+                )
                 .build();
     }
 
     @Bean
-    public PasswordEncoder encoder() {
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
+    @Bean
+    public AuthenticationSuccessHandler authenticationSuccessHandler() {
+        return (request, response, auth) -> {
+            String role = auth.getAuthorities().stream()
+                    .findFirst()
+                    .map(grantedAuthority -> grantedAuthority.getAuthority())
+                    .orElse("ROLE_USER");
+
+            System.out.println("entrou no handle");
+         if(role.equals("ROLE_ADMIN")) {
+             System.out.println("indo para admin");
+            response.sendRedirect("/admin");
+         } else if(role.equals("ROLE_USER")) {
+             System.out.println("indo para user");
+            response.sendRedirect("/index");
+         } else {
+             System.out.println("sem role");
+             response.sendRedirect("/login");
+         }
+        };
+    }
+
+    @Bean
+    public LogoutSuccessHandler logoutSuccessHandler() {
+        return (request, response, authentication) -> {
+            // Redirect to custom logout page
+            response.sendRedirect("/logout");
+        };
+    }
 }
-*/

@@ -1,4 +1,3 @@
-/*
 package com.eletrosapplication.domain;
 
 import jakarta.persistence.Entity;
@@ -8,15 +7,12 @@ import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.Collections;
-
-
 
 @Data
 @Entity
@@ -25,20 +21,19 @@ import java.util.Collections;
 public class Usuario implements UserDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String id;
 
     String username;
     String password;
-    String email;
-    private Boolean isAdmin;
 
+    private Boolean isAdmin;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        if (this.isAdmin){
+        if(this.isAdmin){
             return Collections.singletonList(new SimpleGrantedAuthority("ROLE_ADMIN"));
-        }else{
+        } else {
             return Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"));
         }
     }
@@ -73,4 +68,3 @@ public class Usuario implements UserDetails {
         return true;
     }
 }
- */

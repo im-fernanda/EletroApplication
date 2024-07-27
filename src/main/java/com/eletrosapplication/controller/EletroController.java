@@ -162,14 +162,6 @@ public class EletroController {
         return "redirect:/admin?msg=Remoção realizada com sucesso";
     }
 
-    @PostMapping("/logout")
-    public String logout(HttpSession session) {
-        // Invalidar a sessão
-        session.invalidate();
-        // Redirecionar para a página inicial
-        return "redirect:/index";
-    }
-
     @GetMapping("/getDisplayCategoria/{categoria}")
     public String getDisplayCategoria(@PathVariable String categoria, Model model) {
         List<Eletro> eletros = service.findAll();
