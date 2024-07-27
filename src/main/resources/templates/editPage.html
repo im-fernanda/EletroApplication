@@ -27,6 +27,8 @@
                         <form th:action="@{/processSave/{editar_ou_cadastrar}(editar_ou_cadastrar=${'edit'})}" method="post" th:object="${eletro}" enctype="multipart/form-data">
                             <div class="row mb-3">
                                 <div class="col-md-6">
+                                    <input type="hidden" name="id"  th:field="*{id}"/>
+
                                     <label for="nome" class="form-label">Nome</label>
 
                                     <span class="input-group-text"><i class="bi bi-house-door"></i></span>
@@ -74,7 +76,7 @@
 
                                 <div class="col-md-6">
                                     <label for="imagem" class="form-label">Imagem</label>
-                                    <input type="file" name="image" id="imagem" class="form-control"/>
+                                    <input type="file" name="imagem" id="imagem" class="form-control"/>
                                 </div>
                             </div>
 
