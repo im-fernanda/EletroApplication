@@ -38,6 +38,17 @@ public class EletroController {
         // Adicionando a lista a um model para passar para o HTML
         model.addAttribute("eletros", eletros);
 
+        return "admin";
+    }
+
+    @GetMapping("/index")
+    public String index(Model model, HttpSession session) {
+        // Pegando a lista de itens cadastrados, que não estão deletados
+        List<Eletro> eletros = service.findAll();
+
+        // Adicionando a lista a um model para passar para o HTML
+        model.addAttribute("eletros", eletros);
+
         List<Eletro> carrinho = (List<Eletro>) session.getAttribute("carrinho");
         int quantidade = (carrinho != null) ? carrinho.size() : 0;
 
@@ -58,7 +69,7 @@ public class EletroController {
     @PostMapping("/processSave/{editar_ou_cadastrar}")
     public ModelAndView processSave(
             @ModelAttribute @Valid Eletro eletro, BindingResult result,
-            @RequestParam("image") MultipartFile file, Errors errors,
+            @RequestParam("imagem") MultipartFile file, Errors errors,
             @PathVariable String editar_ou_cadastrar) {
 
         // Verifica se há erros após o upload do arquivo

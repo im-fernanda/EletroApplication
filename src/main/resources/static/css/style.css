@@ -799,6 +799,26 @@ textarea.input {
   transition: 0.2s all;
 }
 
+.product-actions {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.action-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  color: #D10024;
+}
+
+.action-btn:hover {
+  background-color: #FFF;
+  color: #D10024;
+  border-color: #D10024;
+}
+
 .add-product:hover {
   background-color: #FFF;
   color: #D10024;

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EletroTADS</title>
+    <title>EletroTADS - User</title>
 
     <div th:replace="fragments/commons::bootcss"></div>
     <div th:replace="fragments/commons::header"></div>
@@ -12,16 +12,12 @@
 </head>
 <body>
 
-<
 <!-- Exibe a mensagem se existir -->
 <p th:if="${msg}" class="message" th:text="${msg}"></p>
 
 <!-- Inclua o fragmento dos produtos -->
-<div th:replace="fragments/commons::display_produtos"></div>
+<div th:replace="fragments/commons::display_produtos_user"></div>
 
-<form th:action="@{/cadastroPage}" class="form-container text-center mt-5">
-    <button type="submit" class="add-product">Cadastrar Produto</button>
-</form>
 
 <footer th:replace="fragments/commons::footer"> </footer>
 <div th:replace="fragments/commons::bootjs"></div>

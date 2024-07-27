@@ -1,10 +1,91 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EletroTADS</title>
+
+    <div th:replace="fragments/commons::bootcss"></div>
+    <div th:replace="fragments/commons::header"></div>
+    <div th:replace="fragments/commons::navigation"></div>
+
 </head>
+
 <body>
-$END$
+
+<!-- BREADCRUMB -->
+<div id="breadcrumb" class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="breadcrumb-tree">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Todas as Categorias</a></li>
+                    <li><a th:text="${eletro.categoria}"></a></li>
+                    <li class="active" th:text="${eletro.nome}"></li>
+                </ul>
+            </div>
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /BREADCRUMB -->
+
+<!-- PRODUCT DETAILS SECTION -->
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <!-- Product main img -->
+            <div class="col-md-5 col-md-push-2">
+                <div id="product-main-img">
+                    <div class="product-preview">
+                        <img th:src="@{'/img/' + ${eletro.imageUrl}}" alt="Imagem principal do produto" class="img-fluid">
+                    </div>
+                    <!-- Se houver mais imagens -->
+                    <div class="product-preview" th:each="image : ${eletro.imageUrl}">
+                        <img th:src="@{'/img/' + ${image}}" alt="Imagem adicional do produto" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product thumb imgs -->
+            <div class="col-md-2 col-md-pull-5">
+                <div id="product-imgs">
+                    <div class="product-preview">
+                        <img th:src="@{'/img/' + ${eletro.imageUrl}}" alt="Imagem principal do produto" class="img-fluid">
+                    </div>
+                    <!-- Se houver mais imagens -->
+                    <div class="product-preview" th:each="image : ${eletro.imageUrl}">
+                        <img th:src="@{'/img/' + ${image}}" alt="Imagem adicional do produto" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product details -->
+            <div class="col-md-5">
+                <div class="product-details">
+                    <h2 class="product-name" th:text="${eletro.nome}">Nome do Produto</h2>
+                    <h3 class="product-price" th:text="${eletro.preco}">Preço</h3>
+                    <p th:text="${eletro.descricao}">Descrição do Produto</p>
+
+                    <!-- Botão de Adicionar ao Carrinho -->
+                    <div class="add-to-cart">
+                        <a th:href="@{/adicionarCarrinho/{id}(id=${eletro.id})}">
+                            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Adicionar ao carrinho</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<footer th:replace="fragments/commons::footer"> </footer>
+<div th:replace="fragments/commons::bootjs"></div>
 </body>
 </html>

@@ -1,10 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EletroTADS</title>
+
+    <div th:replace="fragments/commons::bootcss"></div>
+    <div th:replace="fragments/commons::header"></div>
+    <div th:replace="fragments/commons::navigation"></div>
+
 </head>
 <body>
-$END$
+
+<!-- Exibe a mensagem se existir -->
+<p th:if="${msg}" class="message" th:text="${msg}"></p>
+
+<!-- Inclua o fragmento dos produtos -->
+<div th:replace="fragments/commons::display_produtos_admin"></div>
+
+
+<!-- Botão para cadastrar um novo produto -->
+<div class="form-container text-center mt-5">
+    <form th:action="@{/cadastroPage}">
+        <button type="submit" class="add-product">Cadastrar Produto</button>
+    </form>
+</div>
+
+
+<footer th:replace="fragments/commons::footer"> </footer>
+<div th:replace="fragments/commons::bootjs"></div>
+
 </body>
 </html>

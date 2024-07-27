@@ -1,39 +1,40 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <div th:fragment="bootcss">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-
     <title>EletroTADS - Ecommerce </title>
+    <div th:fragment="bootcss">
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-    <!-- Google font -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+        <!-- Google font -->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
 
-    <!-- Bootstrap -->
-    <link type="text/css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+        <!-- Bootstrap -->
+        <link type="text/css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
 
-    <!-- Slick -->
-    <link type="text/css" rel="stylesheet" th:href="@{/css/slick.css}"/>
-    <link type="text/css" rel="stylesheet" th:href="@{/css/slick-theme.css}"/>
+        <!-- Slick -->
+        <link type="text/css" rel="stylesheet" th:href="@{/css/slick.css}"/>
+        <link type="text/css" rel="stylesheet" th:href="@{/css/slick-theme.css}"/>
 
-    <!-- nouislider -->
-    <link type="text/css" rel="stylesheet" th:href="@{/css/nouislider.min.css}"/>
+        <!-- nouislider -->
+        <link type="text/css" rel="stylesheet" th:href="@{/css/nouislider.min.css}"/>
 
-    <!-- Font Awesome Icon -->
-    <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}"/>
+        <!-- Font Awesome Icon -->
+        <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}"/>
 
-    <!-- Custom stylesheet -->
-    <link type="text/css" rel="stylesheet" th:href="@{/css/style.css}"/>
+        <!-- Custom stylesheet -->
+        <link type="text/css" rel="stylesheet" th:href="@{/css/style.css}"/>
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
     </div>
 </head>
 <body>
@@ -63,7 +64,7 @@
                 <!-- LOGO -->
                 <div class="col-md-3">
                     <div class="header-logo">
-                        <img src="./img/logo.png" alt="Logo">
+                        <img src="@{/img/logo.png}" alt="Logo">
                     </div>
                 </div>
                 <!-- /LOGO -->
@@ -79,10 +80,10 @@
                     <div class="header-ctn">
                         <!-- Cart -->
                         <div class="dropdown">
-                            <a th:href="@{/verCarrinho}" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                            <a th:href="@{/verCarrinho}">
                                 <i class="fa fa-shopping-cart"></i>
                                 <span>Seu carrinho</span>
-                                <div class="qty">3</div>
+                                <div class="qty" th:text="${quantidade}">0</div>
                             </a>
 
                         </div>
@@ -107,9 +108,9 @@
     <!-- /MAIN HEADER -->
 
     </div>
-            <!-- row -->
-        </div>
-        <!-- container -->
+    <!-- row -->
+    </div>
+    <!-- container -->
     </div>
     <!-- /MAIN HEADER -->
 
@@ -136,8 +137,8 @@
 </nav>
 <!-- /NAVIGATION -->
 
-<!-- DISPLAY PRODUTOS -->
-<div th:fragment="display_produtos" class="section">
+<!-- DISPLAY PRODUTOS USER -->
+<div th:fragment="display_produtos_user" class="section">
     <div class="section">
         <!-- container -->
         <div class="container">
@@ -163,6 +164,8 @@
 
                                     <!-- product -->
                                     <div class="product" th:each="eletro : ${eletros}">
+                                        <!-- Link to product details -->
+                                        <a th:href="@{/produtoDetails/{id}(id=${eletro.id})}" class="product-link">
                                         <div class="product-img">
                                             <img th:src="@{'/img/' + ${eletro.imageUrl}}" alt="Imagem do Eletro">
                                         </div>
@@ -174,8 +177,11 @@
                                                 <h4 class="product-price" th:text="${eletro.preco}"></h4>
                                             </div>
                                         </div>
+                                        </a>
                                         <div class="add-to-cart">
-                                            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Add ao carrinho </button>
+                                            <a th:href="@{/adicionarCarrinho/{id}(id=${eletro.id})}">
+                                                <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Add ao carrinho </button>
+                                            </a>
                                         </div>
                                     </div>
                                     <!-- /product -->
@@ -194,104 +200,79 @@
         <!-- /container -->
     </div>
 </div>
-    <!-- /SECTION -->
+<!-- DISPLAY PRODUTOS USER -->
 
 
-<!-- SECTION TOP SELLING -->
-<div th:fragment="display_top_selling" class="section">
-    <!-- container -->
-    <div class="container">
-        <!-- row -->
-        <div class="row">
-            <div class="col-md-4 col-xs-6">
-                <div class="section-title">
-                    <h4 class="title">Top selling</h4>
-                    <div class="section-nav">
-                        <div id="slick-nav-3" class="products-slick-nav"></div>
+<!-- DISPLAY PRODUTOS ADMIN -->
+<div th:fragment="display_produtos_admin" class="section">
+    <div class="section">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+
+                <!-- section title -->
+                <div class="col-md-12">
+                    <div class="section-title">
+                        <h3 class="title">Produtos</h3>
+
                     </div>
                 </div>
+                <!-- /section title -->
 
-                <div class="products-widget-slick" data-nav="#slick-nav-3">
-                    <div>
-                        <!-- product widget -->
-                        <div class="product-widget">
-                            <div class="product-img">
-                                <img src="./img/product07.png" alt="">
-                            </div>
-                            <div class="product-body">
-                                <p class="product-category">Categoria</p>
-                                <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                <h4 class="product-price">$980.00 </h4>
-                            </div>
-                        </div>
-                        <!-- /product widget -->
+                <!-- Products tab & slick -->
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="products-tabs">
+                            <!-- tab -->
+                            <div id="tab2" class="tab-pane active">
+                                <div class="products-slick" data-nav="#slick-nav-1" >
 
-                        <!-- product widget -->
-                        <div class="product-widget">
-                            <div class="product-img">
-                                <img src="./img/product08.png" alt="">
-                            </div>
-                            <div class="product-body">
-                                <p class="product-category">Category</p>
-                                <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                <h4 class="product-price">$980.00</h4>
-                            </div>
-                        </div>
-                        <!-- /product widget -->
+                                    <!-- product -->
+                                    <div class="product" th:each="eletro : ${eletros}">
+                                        <!-- Link to product details -->
+                                        <a th:href="@{/produtoDetails/{id}(id=${eletro.id})}" class="product-link">
+                                            <div class="product-img">
+                                                <img th:src="@{'/img/' + ${eletro.imageUrl}}" alt="Imagem do Eletro">
+                                            </div>
 
-                        <!-- product widget -->
-                        <div class="product-widget">
-                            <div class="product-img">
-                                <img src="./img/product09.png" alt="">
+                                            <div class="product-body">
+                                                <div class="product-body">
+                                                    <p class="product-category" th:text="${eletro.categoria}"></p>
+                                                    <h3 class="product-name" th:text="${eletro.nome}"></h3>
+                                                    <h4 class="product-price" th:text="${eletro.preco}"></h4>
+                                                </div>
+                                            </div>
+                                        </a>
+
+                                        <div class="product-actions">
+                                            <!-- Edit button -->
+                                            <a th:href="@{/editPage/{id}(id=${eletro.id})}" class="action-btn">
+                                                <i class="fa fa-pencil" title="Editar"></i>
+                                            </a>
+                                            <!-- Delete button -->
+                                            <a th:href="@{/processDelete/{id}(id=${eletro.id})}" class="action-btn" onclick="return confirm('Tem certeza que deseja excluir este produto?');">
+                                                <i class="fa fa-trash" title="Excluir"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <!-- /product -->
+
+
+                                </div>
                             </div>
-                            <div class="product-body">
-                                <p class="product-category">Category</p>
-                                <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                <h4 class="product-price">$980.00 </h4>
-                            </div>
+                            <!-- /tab -->
                         </div>
-                        <!-- product widget -->
                     </div>
-
                 </div>
+                <!-- Products tab & slick -->
             </div>
-
-            <div class="col-md-4 col-xs-6">
-                <div class="section-title">
-                    <h4 class="title">Top selling</h4>
-                    <div class="section-nav">
-                        <div id="slick-nav-4" class="products-slick-nav"></div>
-                    </div>
-                </div>
-
-                <div class="products-widget-slick" data-nav="#slick-nav-4">
-                    <div>
-                        <!-- product widget -->
-                        <div class="product-widget">
-                            <div class="product-img">
-                                <img src="./img/product04.png" alt="">
-                            </div>
-                            <div class="product-body">
-                                <p class="product-category">Category</p>
-                                <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                <h4 class="product-price">$980.00 </h4>
-                            </div>
-                        </div>
-                        <!-- /product widget -->
-
-
-                    </div>
-
-                </div>
-            </div>
-
-
+            <!-- /row -->
         </div>
-        <!-- /row -->
+        <!-- /container -->
     </div>
-    <!-- /container -->
 </div>
-<!-- /SECTION -->
+<!-- DISPLAY PRODUTOS ADMIN  -->
 
 <!-- FOOTER -->
 <footer id="footer" th:fragment="footer">

@@ -28,16 +28,18 @@
                             <div class="row mb-3">
                                 <div class="col-md-6">
                                     <label for="nome" class="form-label">Nome</label>
+
                                     <span class="input-group-text"><i class="bi bi-house-door"></i></span>
-                                    <input type="text" th:field="*{eletro.nome}" id="nome" class="form-control"/>
-                                    <span th:if="${#fields.hasErrors('nome')}" th:errors="*{eletro.nome}" style="color: red"></span>
+                                    <input type="text" th:field="*{nome}" id="nome" class="form-control"/>
+
+                                    <span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" style="color: red"></span>
                                 </div>
 
                                 <div class="col-md-6">
                                     <label for="preco" class="form-label">Preço</label>
                                     <span class="input-group-text"><i class="bi bi-currency-dollar"></i></span>
-                                    <input type="number" step="0.01" th:field="*{eletro.preco}" id="preco" class="form-control"/>
-                                    <span th:if="${#fields.hasErrors('preco')}" th:errors="*{eletro.preco}" style="color: red"></span>
+                                    <input type="number" step="0.01" th:field="*{preco}" id="preco" class="form-control"/>
+                                    <span th:if="${#fields.hasErrors('preco')}" th:errors="*{preco}" style="color: red"></span>
                                 </div>
                             </div>
 
@@ -45,29 +47,29 @@
                                 <div class="col-md-6">
                                     <label for="marca" class="form-label">Marca</label>
                                     <span class="input-group-text"><i class="bi bi-tag"></i></span>
-                                    <input type="text" th:field="*{eletro.marca}" id="marca" class="form-control"/>
-                                    <span th:if="${#fields.hasErrors('marca')}" th:errors="*{eletro.marca}" style="color: red"></span>
+                                    <input type="text" th:field="*{marca}" id="marca" class="form-control"/>
+                                    <span th:if="${#fields.hasErrors('marca')}" th:errors="*{marca}" style="color: red"></span>
                                 </div>
 
                                 <div class="col-md-6">
                                     <label for="categoria" class="form-label">Categoria</label>
                                     <span class="input-group-text"><i class="bi bi-list"></i></span>
-                                    <input type="text" th:field="*{eletro.categoria}" id="categoria" class="form-control"/>
-                                    <span th:if="${#fields.hasErrors('categoria')}" th:errors="*{eletro.categoria}" style="color: red"></span>
+                                    <input type="text" th:field="*{categoria}" id="categoria" class="form-control"/>
+                                    <span th:if="${#fields.hasErrors('categoria')}" th:errors="*{categoria}" style="color: red"></span>
                                 </div>
                             </div>
 
                             <div class="mb-3">
                                 <label for="descricao" class="form-label">Descrição</label>
-                                <textarea th:field="*{eletro.descricao}" id="descricao" class="form-control" rows="3"></textarea>
+                                <textarea th:field="*{descricao}" id="descricao" class="form-control" rows="3"></textarea>
                             </div>
 
                             <div class="row mb-3">
                                 <div class="col-md-6">
                                     <label for="modelo" class="form-label">Modelo</label>
                                     <span class="input-group-text"><i class="bi bi-box"></i></span>
-                                    <input type="text" th:field="*{eletro.modelo}" id="modelo" class="form-control"/>
-                                    <span th:if="${#fields.hasErrors('modelo')}" th:errors="*{eletro.modelo}" style="color: red"></span>
+                                    <input type="text" th:field="*{modelo}" id="modelo" class="form-control"/>
+                                    <span th:if="${#fields.hasErrors('modelo')}" th:errors="*{modelo}" style="color: red"></span>
                                 </div>
 
                                 <div class="col-md-6">

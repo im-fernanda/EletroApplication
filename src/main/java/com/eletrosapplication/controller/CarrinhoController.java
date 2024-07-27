@@ -41,7 +41,7 @@ public class CarrinhoController {
             session.setAttribute("carrinho", carrinho);
         }
 
-        return "redirect:/admin";
+        return "redirect:/index";
     }
 
     @GetMapping("/verCarrinho")
@@ -50,9 +50,16 @@ public class CarrinhoController {
 
         if(carrinho == null || carrinho.isEmpty()) {
             model.addAttribute("msg", "O carrinho está vazio");
-            return "redirect:/admin";
+            return "redirect:/index";
         }
 
+        float valor_total = 0;
+
+        for (Eletro e : carrinho) {
+            valor_total += e.getPreco();
+        }
+
+        model.addAttribute("total", valor_total);
         model.addAttribute("itens", carrinho);
 
         // Criando o cookie de visita
@@ -84,13 +91,13 @@ public class CarrinhoController {
 
             session.setAttribute("carrinho", carrinho);
         }
-        return "redirect:/admin";
+        return "redirect:/verCarrinho";
     }
 
     @GetMapping("/finalizarCompra")
     public String finalizarCompra(HttpSession session) {
         session.setAttribute("carrinho", new ArrayList<>());
 
-        return "redirect:/admin";
+        return "redirect:/index";
     }
 }
