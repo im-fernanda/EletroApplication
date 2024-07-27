@@ -185,4 +185,17 @@ public class EletroController {
 
         return "categoria";
     }
+
+    @GetMapping("/produtoDetails/{id}")
+    public String getProdutoDetails(@PathVariable("id") String id, Model model) {
+        Optional<Eletro> eletroOptional = service.findById(id);
+        if (eletroOptional.isPresent()) {
+            Eletro eletro= eletroOptional.get();
+            model.addAttribute("eletro", eletro);
+            return "produtoDetails";
+        } else {
+            // Retorna uma página de erro se o produto não for encontrado
+            return "error/404";
+        }
+    }
 }
