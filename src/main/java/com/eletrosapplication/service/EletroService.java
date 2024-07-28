@@ -34,7 +34,6 @@ public class EletroService {
     }
 
     public Eletro create(Eletro eletro) {
-        // Adicione lógica de negócios específica antes de salvar, se necessário
         return repository.save(eletro);
     }
 
