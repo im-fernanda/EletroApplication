@@ -44,7 +44,7 @@
                     <div class="product-preview">
                         <img th:src="@{'/img/' + ${eletro.imageUrl}}" alt="Imagem principal do produto" class="img-fluid">
                     </div>
-                    <!-- Se houver mais imagens -->
+                    <!-- Imagens adicionais -->
                     <div class="product-preview" th:each="image : ${eletro.imageUrl}">
                         <img th:src="@{'/img/' + ${image}}" alt="Imagem adicional do produto" class="img-fluid">
                     </div>

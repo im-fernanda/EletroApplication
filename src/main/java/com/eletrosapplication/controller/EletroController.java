@@ -79,11 +79,7 @@ public class EletroController {
     public String getCategorias(Model model) {
         List<Eletro> eletros = service.findAll();
 
-        // Extrair categorias distintas
-        //FazerList<Categoria> categorias =
-
-        //model.addAttribute("categorias", categorias);
-        return "index"; // Nome do template Thymeleaf onde a div está localizada
+        return "index";
     }
 
     @GetMapping("/cadastroPage")
@@ -118,7 +114,7 @@ public class EletroController {
         }
 
         if (Objects.equals(editar_ou_cadastrar, "cad")) {
-            // Gerar um UUID para o nome da imagem
+            // Gera um UUID para o nome da imagem
             String uniqueFilename = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
             // Salvando a imagem com um nome único
             eletro.setImageUrl(uniqueFilename);
@@ -186,7 +182,7 @@ public class EletroController {
             model.addAttribute("eletro", eletro);
             return "produtoDetails";
         } else {
-            // Retorna uma página de erro se o produto não for encontrado
+
             return "error/404";
         }
     }
