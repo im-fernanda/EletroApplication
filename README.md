@@ -36,8 +36,8 @@
 7. Faça login.
 
 <h2 id="routes">📍 API Endpoints</h2>
-
 ​
+
 | route               | description                                          
 |----------------------|-----------------------------------------------------
 | <kbd>GET /index</kbd>     | acesso à homepage do site com acesso como cliente
