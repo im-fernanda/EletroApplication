@@ -21,10 +21,10 @@
 
 1. Crie um Banco de Dados no seu administrador de desenvolvimento para o PostgreSQL ou diretamente no contêiner Docker, criando assim o Banco de Dados inicial para testes. Com isso feito, siga os passos abaixo.
 2. Clone o repositório e acesse a pasta do projeto:
-  ```bash
-  $ git clone im-fernanda/EletroApplication
-  $ cd nome-do-repositiorio
-  ```
+  
+       $ git clone im-fernanda/EletroApplication
+       $ cd nome-do-repositiorio
+
 3. Crie um arquivo application.propertier na raiz do projeto e insira suas credencias. Utilize como exemplo:
   ```yaml
   aws.region=us-east-1
@@ -32,7 +32,7 @@
   aws.secretKey={YOUR_AWS_SECRET}
   ```
 5. Execute o projeto e abra localhost:8080;
-6. Crie uma conta.;
+6. Crie uma conta;
 7. Faça login.
 
 <h2 id="routes">📍 API Endpoints</h2>
