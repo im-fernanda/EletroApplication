@@ -41,7 +41,12 @@
 | route               | description                                          
 |----------------------|-----------------------------------------------------
 | <kbd>GET /index</kbd>     | acesso à homepage do site com acesso como cliente
-| <kbd>GET /admin</kbd>     | acesso à homepage do site com acesso como gerente/admin
-| <kbd>GET /carrinho</kbd>     | editar
-| <kbd>POST /cadastrar</kbd>     | editar
-
+| <kbd>GET /admin</kbd>     | acesso à homepage do site com acesso como admin
+| <kbd>POST /adicionarCarrinho/{id}</kbd>     | adiciona um produto ao carrinho, identificado pelo seu id
+| <kbd>GET /verCarrinho</kbd>     | acesso ao carrinho com o cookie dos produtos com acesso como cliente
+| <kbd>POST /finalizarCompra</kbd>     | fiinaliza a compra dos itens no carrinho, processando o pagamento e concluindo a transação
+| <kbd>GET /displayCategoria/{categoria} </kbd>     | acesso à page de cadastro de produtos com acesso como admin
+| <kbd>GET /produtoDetails/{id}</kbd> | acesso à página de detalhes de um produto específico, identificado pelo seu ID. Se o produto existir, seus detalhes são adicionados ao modelo e a página produtoDetails é exibida
+| <kbd>POST /processSave/{editar_ou_cadastrar}</kbd> | processa o salvamento de um produto, verificando se é uma edição ou um novo cadastro, realiza validações e lida com upload de imagens.
+| <kbd>GET /cadastroPage </kbd>     | acesso à page de cadastro de produtos com acesso como admin
+| <kbd>GET /editPage/{id} </kbd>     | acesso à page de cadastro de produtos com acesso como admin
