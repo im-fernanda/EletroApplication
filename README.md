@@ -37,38 +37,11 @@
 
 <h2 id="routes">📍 API Endpoints</h2>
 
-Here you can list the main routes of your API, and what are their expected request bodies.
 ​
 | route               | description                                          
 |----------------------|-----------------------------------------------------
-| <kbd>GET /authenticate</kbd>     | retrieves user info see [response details](#get-auth-detail)
-| <kbd>POST /authenticate</kbd>     | authenticate user into the api see [request details](#post-auth-detail)
-
-<h3 id="get-auth-detail">GET /authenticate</h3>
-
-**RESPONSE**
-```json
-{
-  "name": "Fernanda Kipper",
-  "age": 20,
-  "email": "her-email@gmail.com"
-}
-```
-
-<h3 id="post-auth-detail">POST /authenticate</h3>
-
-**REQUEST**
-```json
-{
-  "username": "fernandakipper",
-  "password": "4444444"
-}
-```
-
-**RESPONSE**
-```json
-{
-  "token": "OwoMRHsaQwyAgVoc3OXmL1JhMVUYXGGBbCTK0GBgiYitwQwjf0gVoBmkbuyy0pSi"
-}
-```
+| <kbd>GET /index</kbd>     | acesso à homepage do site com acesso como cliente
+| <kbd>GET /admin</kbd>     | acesso à homepage do site com acesso como gerente/admin
+| <kbd>GET /carrinho</kbd>     | editar
+| <kbd>POST /cadastrar</kbd>     | editar
 
