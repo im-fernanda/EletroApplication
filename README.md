@@ -1,12 +1,14 @@
 [JAVA_BADGE]:https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white
 [SPRING_BADGE]: https://img.shields.io/badge/spring-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white
 [BOOTSTRAP_BADGE]: https://img.shields.io/badge/bootstrap-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white
+[THYMELEAF_BADGE]: https://img.shields.io/badge/thymeleaf-%236DB33F.svg?style=for-the-badge&logo=thymeleaf&logoColor=white
 
 <h1 align="center" style="font-weight: bold;">EletroTADS 💻</h1>
 
 ![java][JAVA_BADGE]
 ![spring][SPRING_BADGE]
 ![bootstrap][BOOTSTRAP_BADGE]
+![thymeleaf][THYMELEAF_BADGE]
 
 <p align="center">
   <a href="#started">Getting Started</a> • 
@@ -27,9 +29,14 @@
 
 3. Crie um arquivo application.propertier na raiz do projeto e insira suas credencias. Utilize como exemplo:
   ```yaml
-  aws.region=us-east-1
-  aws.accessKeyId={YOUR_AWS_KEY_ID}
-  aws.secretKey={YOUR_AWS_SECRET}
+  spring.datasource.url=jdbc:postgresql://localhost:5432/eletro_db
+  spring.datasource.username=postgres
+  spring.datasource.password=2005
+  
+  spring.datasource.driver-class-name=org.postgresql.Driver
+  spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
+  spring.jpa.hibernate.ddl-auto=update
+  spring.servlet.multipart.enabled=true
   ```
 5. Execute o projeto e abra localhost:8080;
 6. Crie uma conta;
