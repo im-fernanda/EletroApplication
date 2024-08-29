@@ -25,7 +25,7 @@
 2. Clone o repositório e acesse a pasta do projeto:
   
        $ git clone im-fernanda/EletroApplication
-       $ cd nome-do-repositiorio
+       $ cd nome-da-sua-pasta
 
 3. Crie um arquivo application.propertier na raiz do projeto e insira suas credencias. Utilize como exemplo:
   ```yaml
